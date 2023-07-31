@@ -10,7 +10,15 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        google()
+        jcenter()
+
+        maven {
+            url = 'https://libs.dev.cred.club/'
+
+        }
     }
-}
+    }
+
 rootProject.name = "TripIT"
 include ':app'
