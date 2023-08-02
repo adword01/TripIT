@@ -27,6 +27,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -34,9 +37,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //Lottie
@@ -45,6 +48,10 @@ dependencies {
 
     //Cred
     implementation 'club.cred:neopop:1.0.2'
+
+    //Cred Synth
+    implementation 'club.cred.android:synth:1.0.0'
+
 
     //Dot layout
 //    implementation 'com.tbuonomo:viewpagerdotsindicator:4.1.2'
@@ -56,6 +63,8 @@ dependencies {
 
     //Bottom Navigation Bar
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.20'
+
 
 
 

@@ -15,8 +15,9 @@ dependencyResolutionManagement {
 
         maven {
             url = 'https://libs.dev.cred.club/'
-
         }
+        maven { url 'https://jitpack.io' }
+
     }
     }
 
