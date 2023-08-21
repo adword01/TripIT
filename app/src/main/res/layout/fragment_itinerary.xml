@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/home_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ItineraryFragment">
 
@@ -36,6 +37,7 @@
                 android:fontFamily="@font/gilroyextrabold"
                 android:text="My Itinerary"
                 android:textSize="24sp"
+                android:textColor="@color/pop_white_500"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,14 +66,14 @@
             android:layout_height="300dp"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/back"
-            android:layout_marginEnd="24sp"
-            android:layout_marginBottom="75dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/back"-->
+<!--            android:layout_marginEnd="24sp"-->
+<!--            android:layout_marginBottom="75dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

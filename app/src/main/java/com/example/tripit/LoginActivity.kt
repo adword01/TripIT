@@ -5,23 +5,37 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.example.tripit.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.apply {
+            signIn.setOnClickListener {
+                if (loginEmail.text.toString() == "user@example.com" && LoginPassword.text.toString() == "123456"){
+                    val intent = Intent(this@LoginActivity,HomeActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(this@LoginActivity,"Logged in successfully",Toast.LENGTH_SHORT).show()
+                }
+
+            }
 
 
-        val signin=findViewById<Button>(R.id.sign_in)
-        signin.setOnClickListener {
-            val intent = Intent(this@LoginActivity,HomeActivity::class.java)
-            startActivity(intent)
+
+            signup.setOnClickListener {
+                val intent = Intent(this@LoginActivity,SignUpActivity::class.java)
+                startActivity(intent)
+            }
         }
 
-        val signup=findViewById<TextView>(R.id.signup)
-        signup.setOnClickListener {
-            val intent = Intent(this@LoginActivity,SignUpActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 }
