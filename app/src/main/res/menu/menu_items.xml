@@ -6,6 +6,7 @@
             android:id="@+id/menu_home"
             android:icon="@drawable/icon_home"
             android:title="Home"
+            android:enabled="true"
             app:cnb_iconColor="#3F51B5"
             />
         <item
@@ -14,12 +15,12 @@
             android:title="Navigation"
             app:cnb_iconColor="#F44336"
             />
-<!--        <item-->
-<!--            android:id="@+id/menu_profile"-->
-<!--            android:icon="@drawable/icon_profile"-->
-<!--            android:title="Profile"-->
-<!--            app:cnb_iconColor="#FF9800"-->
-<!--            />-->
+        <item
+            android:id="@+id/menu_post"
+            android:icon="@drawable/add_post"
+            android:title="Post"
+            app:cnb_iconColor="#9288F8"
+            />
         <item
             android:id="@+id/menu_profile"
             android:icon="@drawable/icon_user"

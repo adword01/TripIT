@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".fragments.SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +60,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Profile"
                     android:textSize="20sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +113,7 @@
                     android:layout_marginStart="24sp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Notifications"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -164,6 +167,8 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Terms &amp; Conditions"
                     android:textSize="20sp"
+                    android:textColor="@color/black"
+
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -216,6 +221,8 @@
                     android:layout_marginStart="24sp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Help Center"
+                    android:textColor="@color/black"
+
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -269,6 +276,8 @@
                     android:layout_marginStart="24sp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Give Feedback"
+                    android:textColor="@color/black"
+
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -321,6 +330,7 @@
                     android:layout_marginStart="24sp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Log Out"
+                    android:textColor="#ff0000"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

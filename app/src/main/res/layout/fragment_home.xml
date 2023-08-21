@@ -121,14 +121,220 @@
                    <ImageView
                        android:layout_width="100dp"
                        android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
+                       android:src="@drawable/bilaspurmap" />
 
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
                        android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
+                       android:text="Bilaspur"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/chambamap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Chamba"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/hamirpurmap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Hamirpur"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/kangramap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Kangra"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/kinnaurmap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Kinnaur"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/kullumap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Kullu"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/lahaulspitimap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Lahaul &amp; Spiti"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/mandimap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Mandi"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/shimlamap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Shimla"
+                       android:textColor="@color/white"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/sirmaurmap" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/gilroyextrabold"
+                       android:text="Sirmaur"
                        android:textColor="@color/white"
                        android:textSize="18sp" />
 
@@ -157,7 +363,6 @@
 
                </LinearLayout>
 
-
                <LinearLayout
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -167,179 +372,18 @@
                    <ImageView
                        android:layout_width="100dp"
                        android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
+                       android:src="@drawable/unamap" />
 
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
                        android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
+                       android:text="Una"
                        android:textColor="@color/white"
                        android:textSize="18sp" />
 
                </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical">
-
-
-                   <ImageView
-                       android:layout_width="100dp"
-                       android:layout_height="100dp"
-                       android:src="@drawable/solanmap" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/gilroyextrabold"
-                       android:text="Solan"
-                       android:textColor="@color/white"
-                       android:textSize="18sp" />
-
-               </LinearLayout>
-
 
            </LinearLayout>
 
