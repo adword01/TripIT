@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="home_bg">#031F2B</color>
     <color name="itinerary_selected_bg">#4579ff</color>
+    <color name="itinerary_unselected_bg">#cdd8f6</color>
 </resources>

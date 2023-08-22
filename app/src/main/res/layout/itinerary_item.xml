@@ -9,6 +9,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/itnerary_card"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         app:cardBackgroundColor="@color/itinerary_selected_bg"
