@@ -3,12 +3,15 @@ package com.example.tripit
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.tripit.databinding.ActivityHomeBinding
 import com.example.tripit.fragments.HomeFragment
 import com.example.tripit.fragments.ItineraryFragment
 import com.example.tripit.fragments.PostFragment
 import com.example.tripit.fragments.SettingsFragment
+import com.google.android.material.snackbar.Snackbar
 
 class HomeActivity : AppCompatActivity() {
 
@@ -52,7 +55,14 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_post -> {
-                    loadFragment(PostFragment())
+
+                    val rootView = findViewById<View>(android.R.id.content)
+                    val snackbar = Snackbar.make(rootView, "Coming Soon", Snackbar.LENGTH_SHORT)
+                    snackbar.show()
+
+
+//                    Toast.makeText(this@HomeActivity,"Coming Soon",Toast.LENGTH_SHORT).show()
+//                    loadFragment(PostFragment())
 //                    binding.textMain.text="Settings"
 //                    binding.chipNavigationBar.dismissBadge(R.id.menu_settings)
 //                    binding.textMain.setTextColor(Color.GREEN)
