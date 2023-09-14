@@ -19,7 +19,6 @@ class OnboardActivity : AppCompatActivity() {
         adapter.startAutoScroll()
 
 
-        // Attach the dot indicator to the ViewPager
         dotsIndicator.setViewPager2(viewPager)
 
 

@@ -31,10 +31,8 @@ class ItineraryAdapter(private val items: List<String>) : RecyclerView.Adapter<I
             itemTitle.text = item
 
             if (isFirstItem) {
-                // Set color1 for the first item
                 itemcard.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.itinerary_selected_bg))
             } else {
-                // Set color2 for all other items
                 itemcard.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.itinerary_unselected_bg))
             }
 
