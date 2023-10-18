@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -69,7 +70,20 @@ dependencies {
     //Crunchy Calender
     implementation 'ru.cleverpumpkin:crunchycalendar:2.6.0'
 
+    implementation 'com.google.android.material:material:1.4.0'
 
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Firebase Dependencies
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+
+    //ExifInterfacer
+    implementation 'androidx.exifinterface:exifinterface:1.3.3'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
 
     testImplementation 'junit:junit:4.13.2'
