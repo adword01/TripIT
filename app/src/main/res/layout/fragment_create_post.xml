@@ -51,16 +51,23 @@
             android:layout_height="50dp"
             android:src="@drawable/place" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:paddingStart="20dp"
-            android:text="Add Location"
-            android:background="@drawable/txtfield_bg"
+            android:hint="Add Location"
+            android:id="@+id/location_txt"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -89,11 +96,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="24dp"
                 android:maxLength="40"
                 android:text="User name"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/user_profile_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,15 +125,15 @@
 <!--                app:layout_constraintEnd_toEndOf="parent"-->
 <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Location by city and district"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/user_profile_img"
-                app:layout_constraintTop_toBottomOf="@+id/user_name" />
+<!--            <TextView-->
+<!--                android:id="@+id/location"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:text="Location by city and district"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/user_profile_img"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/user_name" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -136,6 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:maxLength="50"
             android:background="@drawable/txtfield_bg"
             android:hint="It IS a long established fact that a reader Will be
 distracted by the readable content of 0 page when
@@ -213,6 +221,7 @@ looking at its layout,"
 
 
     <Button
+        android:id="@+id/upload_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Upload Post"

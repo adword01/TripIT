@@ -1,7 +1,6 @@
 package com.example.tripit.fragments
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +9,34 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.tripit.ImageAdapter
 import com.example.tripit.R
 import com.example.tripit.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
 
     private lateinit var viewPager2: ViewPager2
 
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var _binding: FragmentHomeBinding
     private val binding get() = _binding!!
+
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        _binding.progressBar.visibility = View.VISIBLE
+        checkProfileImageUrlInDatabase()
+
         return binding.root
     }
 
@@ -65,8 +78,31 @@ class HomeFragment : Fragment() {
         // Optionally, set the initial item to make the second item visible
         viewPager2.setCurrentItem(2, true)
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun checkProfileImageUrlInDatabase() {
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val useruid = firebaseAuth.currentUser?.uid.toString()
+
+        // Check if the profile image URL exists in the database
+        databaseReference = FirebaseDatabase.getInstance().reference.child("users")
+
+        databaseReference.child(useruid).child("profileImageUrl")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val imageUrl = dataSnapshot.value.toString()
+                    // If a profile image URL is available in the database, load the image
+                    Picasso.get().load(imageUrl).into(_binding.profileImage)
+                    _binding.progressBar.visibility = View.GONE
+
+
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle errors here
+                    _binding.progressBar.visibility = View.GONE
+
+                }
+            })
     }
 }
