@@ -74,4 +74,5 @@ class HomeActivity : AppCompatActivity() {
         transaction.replace(R.id.container,fragment)
         transaction.commit()
     }
+    
 }

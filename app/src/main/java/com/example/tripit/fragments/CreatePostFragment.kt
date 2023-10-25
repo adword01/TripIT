@@ -29,6 +29,7 @@ class CreatePostFragment : Fragment() {
     private lateinit var binding: FragmentCreatePostBinding
     private lateinit var useruid: String
     private lateinit var imageUrl: String
+    private lateinit var profileimageUri: String
     private var post_number:Int = 0
     private var currentPostNumber:Int=0
 
@@ -99,9 +100,9 @@ class CreatePostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == Activity.RESULT_OK && data != null) {
-            val imageUri: String = data.data.toString()
+            profileimageUri = data.data.toString()
 
-            Picasso.get().load(imageUri).into(binding.imageView11)
+            Picasso.get().load(profileimageUri).into(binding.imageView11)
 
             binding.locationLyt.visibility = View.VISIBLE
         }
@@ -151,7 +152,7 @@ class CreatePostFragment : Fragment() {
         postMap["post_number"] = post_number
         postMap["content"] = binding.caption.text.toString()
         postMap["location"] = binding.locationTxt.text.toString()
-        postMap["imageUrl"] = imageUrl // Use the profile image URL
+        postMap["imageUrl"] = profileimageUri // Use the profile image URL
 
         databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
             .addOnCompleteListener { task ->

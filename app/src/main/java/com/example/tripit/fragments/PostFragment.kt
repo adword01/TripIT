@@ -68,7 +68,7 @@ class PostFragment : Fragment() {
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                postsData.clear() // Clear the list to avoid duplicates
+                postsData.clear()
 
                 for (postSnapshot in dataSnapshot.children) {
                     val postMap = HashMap<String, Any>()
