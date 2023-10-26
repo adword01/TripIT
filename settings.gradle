@@ -17,6 +17,8 @@ dependencyResolutionManagement {
             url = 'https://libs.dev.cred.club/'
         }
         maven { url 'https://jitpack.io' }
+        maven {url 'https://maven.mappls.com/repository/mappls/'}
+
 
     }
     }

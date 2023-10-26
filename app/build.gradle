@@ -88,6 +88,11 @@ dependencies {
     implementation 'androidx.exifinterface:exifinterface:1.3.3'
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
+    //Mappls
+    implementation 'com.mappls.sdk:mappls-android-sdk:8.0.8'
+    implementation 'com.mappls.sdk:geofence-ui:1.0.0'
+
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
