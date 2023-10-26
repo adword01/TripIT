@@ -60,6 +60,11 @@ class LoginActivity : AppCompatActivity() {
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance()
 
+        binding.signup.setOnClickListener {
+            startActivity(Intent(this@LoginActivity,SignUpActivity::class.java))
+            finish()
+        }
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()

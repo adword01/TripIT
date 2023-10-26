@@ -2,4 +2,6 @@
     <string name="app_name">TripIT</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="api_key">ced1b2f5797366ff5dd8f36048e116ad</string>
+
 </resources>
