@@ -160,6 +160,7 @@ class CreatePostFragment : Fragment() {
         databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    AddPostNumber(post_number)
                     Toast.makeText(requireContext(), "Post saved successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireContext(), "Error saving post", Toast.LENGTH_SHORT).show()
@@ -167,41 +168,80 @@ class CreatePostFragment : Fragment() {
             }
     }
 
+    private fun AddPostNumber(postNumber : Int){
+        databaseReference.child("PostNumber").child(useruid).setValue(hashMapOf(
+            "Post" to postNumber
+        ))
+    }
+
     private fun retrievePostNumber() {
-        val postNumberReference = databaseReference.child("posts").child(useruid).child(post_number.toString()).child("post_number")
 
-        postNumberReference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    currentPostNumber = (dataSnapshot.value as Long).toInt()
-//                    Log.d("PostNumber", "Current Post Number: $currentPostNumber")
-//
-//                    post_number++
-//                    Log.d("PostNumber", "Updated Post Number: $post_number")
-//
-//                    savePostToDatabase()
-                } else {
-                    currentPostNumber=0
-//                    Log.d("PostNumber", "Post Number doesn't exist. Setting to 1")
-//                    savePostToDatabase()
-                }
+
+        val postReference = databaseReference.child("PostNumber").child(useruid)
+
+
+        postReference.get().addOnSuccessListener {
+            if (it.exists()){
+                val postNumber = it.child("Post").value
+                currentPostNumber = postNumber.toString().toInt()
+            }else{
+                currentPostNumber = 0
             }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle any errors that occurred during the database operation
-                Log.e("PostNumber", "Error retrieving post number: ${databaseError.message}")
-            }
-        })
-        if (currentPostNumber == 0){
-            currentPostNumber++
-            savePostToDatabase(currentPostNumber)
         }
-        else{
-            currentPostNumber++
-            Log.d("PostNumber", "Updated Post Number: $currentPostNumber")
 
-            savePostToDatabase(currentPostNumber)
-        }
+        currentPostNumber += 1
+        savePostToDatabase(currentPostNumber)
+
+//        postReference.addListenerForSingleValueEvent(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if (snapshot.exists()){
+//
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
+
+
+
+
+//        val postNumberReference = databaseReference.child("posts").child(useruid).child(post_number.toString()).child("post_number")
+//
+//        postNumberReference.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    currentPostNumber = (dataSnapshot.value as Long).toInt()
+////                    Log.d("PostNumber", "Current Post Number: $currentPostNumber")
+////
+////                    post_number++
+////                    Log.d("PostNumber", "Updated Post Number: $post_number")
+////
+////                    savePostToDatabase()
+//                } else {
+//                    currentPostNumber=0
+////                    Log.d("PostNumber", "Post Number doesn't exist. Setting to 1")
+////                    savePostToDatabase()
+//                }
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Handle any errors that occurred during the database operation
+//                Log.e("PostNumber", "Error retrieving post number: ${databaseError.message}")
+//            }
+//        })
+//        if (currentPostNumber == 0){
+//            currentPostNumber++
+//            savePostToDatabase(currentPostNumber)
+//        }
+//        else{
+//            currentPostNumber++
+//            Log.d("PostNumber", "Updated Post Number: $currentPostNumber")
+//
+//            savePostToDatabase(currentPostNumber)
+//        }
     }
 
 
