@@ -29,7 +29,7 @@ class CreatePostFragment : Fragment() {
     private lateinit var binding: FragmentCreatePostBinding
     private lateinit var useruid: String
     private lateinit var imageUrl: String
-    private lateinit var profileimageUri: String
+    private lateinit var ProfileImage : String
     private var post_number:Int = 0
     private var currentPostNumber:Int=0
 
@@ -59,10 +59,11 @@ class CreatePostFragment : Fragment() {
         binding.imageView11.setOnClickListener {
             pickImageFromGallery()
         }
-
         binding.uploadBtn.setOnClickListener {
             retrievePostNumber()
         }
+
+
 
         return binding.root
     }
@@ -100,9 +101,10 @@ class CreatePostFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == Activity.RESULT_OK && data != null) {
-            profileimageUri = data.data.toString()
+            val imageUri: String = data.data.toString()
+            imageUrl = imageUri
 
-            Picasso.get().load(profileimageUri).into(binding.imageView11)
+            Picasso.get().load(imageUri).into(binding.imageView11)
 
             binding.locationLyt.visibility = View.VISIBLE
         }
@@ -129,9 +131,10 @@ class CreatePostFragment : Fragment() {
         databaseReference.child(useruid).child("profileImageUrl")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    imageUrl = dataSnapshot.value.toString()
+                    ProfileImage = dataSnapshot.value.toString()
 
-                    Picasso.get().load(imageUrl).into(binding.userProfileImg)
+                    Picasso.get().load(ProfileImage).into(binding.userProfileImg)
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -140,7 +143,7 @@ class CreatePostFragment : Fragment() {
             })
     }
 
-    private fun savePostToDatabase() {
+    private fun savePostToDatabase(post_number : Int) {
         val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
 
 
@@ -148,11 +151,11 @@ class CreatePostFragment : Fragment() {
         val postMap = HashMap<String, Any>()
 
         postMap["username"] = binding.userName.text.toString()
-        postMap["uid"] = useruid
+        postMap["ProfileImage"] = ProfileImage
         postMap["post_number"] = post_number
         postMap["content"] = binding.caption.text.toString()
         postMap["location"] = binding.locationTxt.text.toString()
-        postMap["imageUrl"] = profileimageUri // Use the profile image URL
+        postMap["imageUrl"] = imageUrl // Use the profile image URL
 
         databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
             .addOnCompleteListener { task ->
@@ -190,14 +193,14 @@ class CreatePostFragment : Fragment() {
             }
         })
         if (currentPostNumber == 0){
-            savePostToDatabase()
             currentPostNumber++
+            savePostToDatabase(currentPostNumber)
         }
         else{
             currentPostNumber++
             Log.d("PostNumber", "Updated Post Number: $currentPostNumber")
 
-            savePostToDatabase()
+            savePostToDatabase(currentPostNumber)
         }
     }
 

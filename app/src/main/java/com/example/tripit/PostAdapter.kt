@@ -8,11 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class PostAdapter(private val posts: List<HashMap<String, Any>>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val usernameTextView: TextView = itemView.findViewById(R.id.user_name)
-        val postImageView: ImageView = itemView.findViewById(R.id.user_profile_img)
+        val Location: TextView = itemView.findViewById(R.id.location)
+        val UserProfile: ImageView = itemView.findViewById(R.id.user_profile_img)
+        val PostImage : ImageView = itemView.findViewById(R.id.PostImageView)
         // Add more views for other post data
     }
 
@@ -23,11 +25,15 @@ class PostAdapter(private val posts: List<HashMap<String, Any>>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts[position]
-        holder.usernameTextView.text = post["username"].toString()
+        holder.usernameTextView.text = post.username
+        holder.Location.text = post.location
 
         // Load images into ImageView using Picasso
-        val imageUrl = post["imageUrl"].toString()
-        Picasso.get().load(imageUrl).into(holder.postImageView)
+        val imageUrl = post.ProfileImage
+        Picasso.get().load(imageUrl).into(holder.UserProfile)
+        val PostUrl = post.imageUrl
+        Picasso.get().load(PostUrl).into(holder.PostImage)
+
 
         // Set other post data
     }

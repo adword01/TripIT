@@ -51,7 +51,7 @@
         app:neopop_parent_view_color="#5EDFFF"
         app:neopop_bottom_surface_color="@color/white"
         app:neopop_right_surface_color="@color/white"
-        >
+        tools:ignore="MissingClass">
 
         <ImageView
             android:layout_width="match_parent"
