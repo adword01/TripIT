@@ -1,6 +1,7 @@
 package com.example.tripit
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tripit.databinding.ActivityHomeBinding
@@ -74,5 +75,30 @@ class HomeActivity : AppCompatActivity() {
         transaction.replace(R.id.container,fragment)
         transaction.commit()
     }
-    
+
+//    @Deprecated("Deprecated in Java")
+//    override fun onBackPressed() {
+//        val alertDialogBuilder = AlertDialog.Builder(this)
+//        alertDialogBuilder.setMessage("Do you want to exit the app?")
+//            .setCancelable(false)
+//            .setPositiveButton("Yes") { _, _ ->
+//                // Finish the activity and exit the app
+//                finish()
+//            }
+//            .setNegativeButton("No") { dialog, _ ->
+//                // Dismiss the dialog if "No" is clicked
+//                dialog.dismiss()
+//            }
+//
+//        val alertDialog = alertDialogBuilder.create()
+//
+//        // Show the dialog
+//        alertDialog.show()
+//
+//        super.onBackPressed()
+//    }
+
+
+
+
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_gravity="center"
+        android:indeterminateTint="#FFEB3B"
+        android:layout_width="wrap_content"
+        android:foregroundTint="#FFEB3B"
+        android:progressTint="#FFEB3B"
+        android:backgroundTint="#FFEB3B"
+        android:stepSize="1"
+        android:secondaryProgressTint="#FFEB3B"
+        android:layout_height="wrap_content" />
+
+    <!-- Add other views here if needed -->
+
+</LinearLayout>
