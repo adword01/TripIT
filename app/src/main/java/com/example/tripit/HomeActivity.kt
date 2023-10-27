@@ -36,6 +36,14 @@ class HomeActivity : AppCompatActivity() {
 //                    binding.textMain.setTextColor(Color.BLUE)
 
                 }
+
+                R.id.menu_expense -> {
+//                    loadFragment(ExpenseFragment())
+
+//                    binding.textMain.text="Home"
+//                    binding.textMain.setTextColor(Color.BLUE)
+
+                }
                 R.id.menu_nav ->{
                     loadFragment(ItineraryFragment())
 

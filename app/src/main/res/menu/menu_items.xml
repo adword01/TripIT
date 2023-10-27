@@ -2,19 +2,29 @@
     <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <item
-            android:id="@+id/menu_home"
-            android:icon="@drawable/icon_home"
-            android:title="Home"
-            android:enabled="true"
-            app:cnb_iconColor="#3F51B5"
-            />
+
+    <item
+        android:id="@+id/menu_expense"
+        android:icon="@drawable/icon_expense"
+        android:title="Expenses"
+        app:cnb_iconColor="#f4b2b0"
+        />
+
         <item
             android:id="@+id/menu_nav"
             android:icon="@drawable/icon_nav"
             android:title="Navigation"
             app:cnb_iconColor="#F44336"
             />
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/icon_home"
+        android:title="Home"
+        android:enabled="true"
+        app:cnb_iconColor="#3F51B5"
+        />
+
         <item
             android:id="@+id/menu_post"
             android:icon="@drawable/add_post"

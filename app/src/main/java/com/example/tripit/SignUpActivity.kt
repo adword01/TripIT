@@ -42,6 +42,10 @@ class SignUpActivity : AppCompatActivity() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        binding.login.setOnClickListener {
+            startActivity(Intent(this@SignUpActivity,LoginActivity::class.java))
+            finish()
+        }
 
 
         binding.signup.setOnClickListener {
