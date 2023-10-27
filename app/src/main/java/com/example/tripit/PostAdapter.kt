@@ -15,6 +15,8 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdap
         val Location: TextView = itemView.findViewById(R.id.location)
         val UserProfile: ImageView = itemView.findViewById(R.id.user_profile_img)
         val PostImage : ImageView = itemView.findViewById(R.id.PostImageView)
+        val caption : TextView = itemView.findViewById(R.id.caption)
+        val Date : TextView = itemView.findViewById(R.id.timing)
         // Add more views for other post data
     }
 
@@ -27,6 +29,8 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdap
         val post = posts[position]
         holder.usernameTextView.text = post.username
         holder.Location.text = post.location
+        holder.caption.text = post.content
+        holder.Date.text = "Posted On: ${ post.Post_Date }"
 
         // Load images into ImageView using Picasso
         val imageUrl = post.ProfileImage

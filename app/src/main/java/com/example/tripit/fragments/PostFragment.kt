@@ -1,5 +1,6 @@
 package com.example.tripit.fragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -31,6 +32,7 @@ class PostFragment : Fragment() {
 
     private lateinit var useruid: String
 
+    private var progressDialog: ProgressDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,8 +59,7 @@ class PostFragment : Fragment() {
 
             // Replace the current fragment with the "Create Post" fragment
             transaction.replace(R.id.container, createPostFragment)
-            // You can add the transaction to the back stack if you want to navigate back
-            // transaction.addToBackStack(null)
+             transaction.addToBackStack(null)
 
             // Commit the transaction
             transaction.commit()
@@ -78,7 +79,7 @@ class PostFragment : Fragment() {
                 for (postSnapshot in dataSnapshot.children) {
                     val PostData = postSnapshot.getValue(Post::class.java)
                     PostData?.let {
-                        PostD.add(it)
+                        PostD.add(0,it)
                     }
 
                     Log.d("Post",PostD.toString())
@@ -113,6 +114,17 @@ class PostFragment : Fragment() {
         })
     }
 
+
+    private fun showprogressbar(){
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog?.setMessage("Fetching Employees...")
+        progressDialog?.setCancelable(false)
+        progressDialog?.show()
+
+    }
+    private fun dismissprogressbar(){
+        progressDialog?.dismiss()
+    }
 
 
 }
