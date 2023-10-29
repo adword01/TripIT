@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/NameTextView"
+        android:text="Name"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/PurposeTextView"
+        android:text="Purpose"
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/PriceTextView"
+        android:text="Rs. "
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tripit.databinding.ActivityHomeBinding
+import com.example.tripit.fragments.ExpenditureFragment
 import com.example.tripit.fragments.HomeFragment
 import com.example.tripit.fragments.ItineraryFragment
 import com.example.tripit.fragments.PostFragment
@@ -38,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.menu_expense -> {
-//                    loadFragment(ExpenseFragment())
+                    loadFragment(ExpenditureFragment())
 
 //                    binding.textMain.text="Home"
 //                    binding.textMain.setTextColor(Color.BLUE)
