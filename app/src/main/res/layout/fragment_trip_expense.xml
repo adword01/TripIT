@@ -20,84 +20,87 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <LinearLayout-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/SchoolNameTextField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_weight="0.75"
-            android:layout_marginEnd="5dp"
-            android:layout_height="wrap_content"
-            app:hintTextColor="@color/white"
-            android:hint="Person">
-
-
-            <AutoCompleteTextView
-                android:textColor="@color/white"
-                android:id="@+id/namePerson"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/SchoolNameTextField"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="0.75"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:hintTextColor="@color/white"-->
+<!--            android:hint="Person">-->
 
 
+<!--            <AutoCompleteTextView-->
+<!--                android:textColor="@color/white"-->
+<!--                android:id="@+id/namePerson"-->
+<!--                app:hintTextColor="@color/white"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="none" />-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            app:hintTextColor="@color/white"
-            android:layout_marginEnd="5dp"
-            android:hint="Expense Title">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:textColor="@color/white"
-                android:id="@+id/ExpenseTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            app:hintTextColor="@color/white"
-            android:hint="Price">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:textColor="@color/white"
-                android:id="@+id/Price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:id="@+id/AddButton"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/add"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 
 
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="0.5"-->
+<!--            app:hintTextColor="@color/white"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:hint="Purpose">-->
 
 
-    </LinearLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:textColor="@color/white"-->
+<!--                android:id="@+id/ExpenseTitle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                app:hintTextColor="@color/white"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="none" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="0.5"-->
+<!--            app:hintTextColor="@color/white"-->
+<!--            android:hint="Price">-->
+
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:textColor="@color/white"-->
+<!--                android:id="@+id/Price"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:hintTextColor="@color/white"-->
+<!--                android:inputType="numberDecimal" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/AddButton"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:src="@drawable/add"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"/>-->
+
+
+
+
+
+<!--    </LinearLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ExpenseRecyclerview"
@@ -105,13 +108,31 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-
-    <Button
-        android:layout_margin="10dp"
-        android:text="Individual Expense"
-        android:id="@+id/IndividualExpenseBtn"
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginEnd="5dp"
+            android:text="Individual Expense"
+            android:id="@+id/IndividualExpenseBtn"
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="Add Expense"
+            android:id="@+id/AddExpense"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
 
 
 
