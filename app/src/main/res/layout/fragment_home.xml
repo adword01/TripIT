@@ -112,6 +112,7 @@
                android:orientation="horizontal">
 
                <LinearLayout
+                   android:id="@+id/bilaspur"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -135,6 +136,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/chamba"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -158,6 +160,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/hamirpur"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -181,6 +184,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/kangra"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -204,6 +208,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/kinnaur"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -227,6 +232,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/kullu"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -250,6 +256,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/lahaul"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -273,6 +280,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/mandi"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -296,6 +304,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/shimla"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -318,6 +327,7 @@
                </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/sirmaur"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -341,6 +351,7 @@
 
 
                <LinearLayout
+                   android:id="@+id/solan"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
@@ -363,6 +374,7 @@
                </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/una"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:orientation="vertical">

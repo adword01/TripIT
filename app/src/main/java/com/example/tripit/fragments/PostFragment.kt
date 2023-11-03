@@ -115,7 +115,7 @@ class PostFragment : Fragment() {
 
     private fun showprogressbar(){
         progressDialog = ProgressDialog(requireContext())
-        progressDialog?.setMessage("Fetching Employees...")
+        progressDialog?.setMessage("Fetching Posts...")
         progressDialog?.setCancelable(false)
         progressDialog?.show()
 

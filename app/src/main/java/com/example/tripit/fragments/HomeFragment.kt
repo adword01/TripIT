@@ -1,5 +1,7 @@
 package com.example.tripit.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,9 @@ class HomeFragment : Fragment() {
     private lateinit var viewPager2: ViewPager2
 
     private lateinit var _binding: FragmentHomeBinding
+
+    private lateinit var sharedPreferences: SharedPreferences
+
     private val binding get() = _binding!!
 
     private lateinit var databaseReference: DatabaseReference
@@ -34,8 +39,107 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        sharedPreferences = requireContext().getSharedPreferences("DistrictPref", Context.MODE_PRIVATE)
+
+
         _binding.progressBar.visibility = View.VISIBLE
         checkProfileImageUrlInDatabase()
+
+        binding.bilaspur.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Bilaspur" )
+            editor.apply()
+        }
+
+
+        binding.chamba.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Chamba" )
+            editor.apply()
+        }
+
+        binding.hamirpur.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Hamirpur" )
+            editor.apply()
+        }
+        binding.kangra.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Kangra" )
+            editor.apply()
+        }
+
+        binding.kinnaur.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Kinnaur" )
+            editor.apply()
+        }
+
+        binding.kullu.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Kullu" )
+            editor.apply()
+        }
+
+        binding.lahaul.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Lahaul" )
+            editor.apply()
+        }
+
+        binding.mandi.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Mandi" )
+            editor.apply()
+        }
+
+        binding.shimla.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Shimla" )
+            editor.apply()
+        }
+
+        binding.sirmaur.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Sirmaur" )
+            editor.apply()
+        }
+
+        binding.solan.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Solan" )
+            editor.apply()
+        }
+
+        binding.una.setOnClickListener {
+            loadFragment(DistrictFragment())
+
+            val editor = sharedPreferences.edit()
+            editor.putString("district","Una" )
+            editor.apply()
+        }
 
         return binding.root
     }
@@ -104,5 +208,10 @@ class HomeFragment : Fragment() {
 
                 }
             })
+    }
+    private fun loadFragment(fragment: Fragment) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.commit()
     }
 }

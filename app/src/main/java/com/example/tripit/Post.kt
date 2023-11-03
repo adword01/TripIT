@@ -7,6 +7,9 @@ data class Post(
     var post_number : Int,
     var ProfileImage : String,
     var Post_Date: String,
-    var username: String
+    var username: String,
+    var like: Int,
+    var comment: String,
+    var save:Boolean
 ){
-constructor():this("","","",0,"","","")}
+constructor():this("","","",0,"","","",0,"",false)}
