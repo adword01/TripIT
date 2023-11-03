@@ -4,35 +4,38 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tripit.Expense
 import com.example.tripit.ExpenseAdapter
 import com.example.tripit.ExpenseDetail
+import com.example.tripit.PersonAdapter
+import com.example.tripit.PersonDataManager
 import com.example.tripit.R
-import com.example.tripit.Trip
 import com.example.tripit.databinding.FragmentTripExpenseBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import org.checkerframework.checker.units.qual.s
-import java.security.Key
 
 
 class TripExpenseFragment : Fragment() {
+
+    private val personDataManager = PersonDataManager()
 
     private lateinit var binding : FragmentTripExpenseBinding
     override fun onCreateView(
@@ -50,9 +53,13 @@ class TripExpenseFragment : Fragment() {
 
 
 
-        binding.AddButton.setOnClickListener {
-            pushData(tripName.toString())
-        }
+//        binding.AddButton.setOnClickListener {
+//            if (binding.ExpenseTitle.text.isNullOrBlank() || binding.Price.text.isNullOrBlank() || binding.namePerson.text.isNullOrBlank()) {
+//            }else{
+//               // pushData(tripName.toString())
+//            }
+//
+//        }
 
         fetchTripsFromFirebase(tripName.toString())
         return binding.root
@@ -152,65 +159,244 @@ class TripExpenseFragment : Fragment() {
 //        }
 
     }
+    fun PushIndividualPrice(context: Context,TripName: String,namesList: List<String>) {
+        // Create a custom view for the AlertDialog
+        val inflater = LayoutInflater.from(context)
+        val dialogView: View = inflater.inflate(R.layout.add_expense_layout, null)
+
+
+        val recyclerView = dialogView.findViewById<RecyclerView>(R.id.PersonCheckBoxrecyclerview)
+        val namePerson = dialogView.findViewById<AutoCompleteTextView>(R.id.namePerson)
+        val SaveBtn = dialogView.findViewById<Button>(R.id.SaveExpenseBtn)
+        val TabLayout = dialogView.findViewById<TabLayout>(R.id.TabLayout)
+        val Price = dialogView.findViewById<TextInputEditText>(R.id.Price)
+        val Puropose = dialogView.findViewById<TextInputEditText>(R.id.ExpenseTitle)
+
+
+        val schooladapter = ArrayAdapter(requireContext(),R.layout.item_list,namesList)
+        namePerson.setAdapter(schooladapter)
+        var Name = ""
+
+        namePerson.setOnItemClickListener { parent, view, position, id ->
+            // Get the selected item (in this case, a String)
+            val selectedItem = parent.adapter.getItem(position) as String
+            val newList =  namesList.toMutableList()
+            newList.remove(selectedItem)
+            Name = selectedItem
+            val adapter = PersonAdapter(newList,personDataManager,selectedItem)
+            recyclerView.adapter = adapter
+        }
+
+       // val TotalExpenseTextView = dialogView.findViewById<TextView>(R.id.TotalExpenseTextView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+       // val pgbar = dialogView.findViewById<ProgressBar>(R.id.pgbar)
+
+        val sf  = context.getSharedPreferences("PricePrefs",Context.MODE_PRIVATE)
+        val editor = sf.edit()
+        val personName  = namePerson.text.toString()
+
+
+
+       TabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                // Handle tab selection, and update the fragment content accordingly
+                when (tab.position) {
+                    0 -> {
+                        val newList = namesList.toMutableList()
+                        newList.remove(Name)
+                        editor.putString("PriceTab","false").apply()
+                        val adapter = PersonAdapter(newList,personDataManager,personName)
+                        recyclerView.adapter = adapter
+                        adapter.notifyDataSetChanged()
+                    }
+                    1 -> {
+                        val newList = namesList.toMutableList()
+                        newList.remove(Name)
+                        editor.putString("PriceTab", "true").apply()
+                        val adapter = PersonAdapter(newList,personDataManager,personName)
+                        recyclerView.adapter = adapter
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                // Handle tab unselection if needed
+                editor.putString("PriceTab","false").apply()
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                // Handle tab reselection if needed
+            }
+        })
+
+        Log.d("Tab",sf.getString("PriceTab","k").toString())
+
+
+        val builder = AlertDialog.Builder(context)
+        builder.setView(dialogView)
 
 
 
 
 
-    private fun pushData(TripName : String){
+
+
+
+
+
+
+
+
+      //  val closeButton = dialogView.findViewById<ImageView>(R.id.closeButton)
+
+
+        val dialog = builder.create()
+        dialog.show()
+
+        SaveBtn.setOnClickListener {
+
+            pushData(dialog,namePerson.text.toString(),Price,Puropose.text.toString(),TripName)
+
+        }
+
+        dialog.setOnDismissListener {
+            // Set your string to null when the dialog is dismissed
+            editor.putString("PriceTab", null).apply()
+        }
+
+//        closeButton.setOnClickListener {
+//
+//            dialog.dismiss()
+//        }
+
+    }
+
+
+
+
+
+    private fun pushData(dialog: AlertDialog,namPerson : String,Price: TextInputEditText,Puropose : String,TripName : String){
 
         val reference = FirebaseDatabase.getInstance().reference.child("Trips").child(TripName)
 
-        reference.child("Expense").child(binding.namePerson.text.toString()).push().setValue( hashMapOf(
-            "Purpose" to binding.ExpenseTitle.text.toString(),
-            "Price" to binding.Price.text.toString(),
-            "Name" to binding.namePerson.text.toString()
-        )).addOnSuccessListener {
+
+       // val selectedPeople = adapter.getClickedPeople()
+
+        val personDataMap = HashMap<String, Any>() // Create a HashMap for all the selected eople
+        val selectedPeopleWithPrices = personDataManager.getSelectedPeopleWithPrices()
+        Log.d("adapter",selectedPeopleWithPrices.toString())
+
+// You can now use selectedPeopleWithPrices in your fragment
+        for ((personName, price) in selectedPeopleWithPrices) {
+            if (personName != namPerson && !price.equals("")){
+                val expenseData = hashMapOf(
+                    "Price" to price,
+                    "Name" to personName
+                )
+
+                personDataMap[personName] = expenseData
+            }else if(personName != namPerson && price.equals("")){
+
+                val NewPrice =  Price.text.toString().toDouble() / (selectedPeopleWithPrices.size +1)
+                val expenseData = hashMapOf(
+                    "Price" to NewPrice,
+                    "Name" to personName
+                )
+
+                personDataMap[personName] = expenseData
+            }
 
 
-
-            reference.addValueEventListener(object: ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val priceText = binding.Price.text.toString()
-
-
-
-                    if (snapshot.exists()){
-                        for (dataSnapShot in snapshot.children){
-                            val valueText = dataSnapShot.value.toString()
-                            val String = dataSnapShot.key
-
-                            if (String == "Total_Price" && !priceText.isNullOrEmpty() ){
-
-                                    Log.d("Kanishk2", valueText)
-                                    val price = priceText.toDouble()
-                                    val value = valueText.toDouble()
-
-                                    val total = price + value
-                                    Log.d("Expense", "Yes $total")
-                                    reference.child("Total_Price").setValue(total.toString())
-                                    binding.namePerson.text.clear()
-                                    binding.ExpenseTitle.text?.clear()
-                                    binding.Price.text?.clear()
-                                }
-
-
-
-                        }
-                    }
-
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle onCancelled event if needed
-                }
-            })
-
-
-
-            Toast.makeText(requireContext(),"Added Successfully",Toast.LENGTH_SHORT).show()
         }
+
+            val newExpenseNode = reference.child("Expense").child(namPerson).push()
+            val expenseData = hashMapOf(
+                "Purpose" to Puropose,
+                "Price" to Price.text.toString(),
+                "Name" to namPerson,
+                "Users" to personDataMap
+            )
+
+            newExpenseNode.setValue(expenseData).addOnSuccessListener {
+                dialog.dismiss()
+
+                reference.get().addOnSuccessListener {
+                    val priceText = Price.text.toString()
+                    if (it.exists()){
+                        val dataSnapShot = it.child("Total_Price")
+                        if (dataSnapShot.exists()){
+
+                            val price = priceText.toDouble()
+                            val value = dataSnapShot.value.toString().toDouble()
+
+                            val total = price + value
+                            Log.d("Expense", "Yes $total")
+                            reference.child("Total_Price").setValue(total.toString())
+                            Toast.makeText(requireContext(),"Added Successfully",Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            val price = priceText.toDouble()
+                            reference.child("Total_Price").setValue(price.toString())
+                            Toast.makeText(requireContext(),"Added Successfully",Toast.LENGTH_SHORT).show()
+                        }
+                        Log.d("Kanishk2", String.toString())
+                    }
+                }
+
+
+//                reference.addValueEventListener(object: ValueEventListener {
+//                    override fun onDataChange(snapshot: DataSnapshot) {
+//                        val priceText = Price.text.toString()
+//
+//
+//
+//                        if (snapshot.exists()){
+//                            for (dataSnapShot in snapshot.children){
+//                                val valueText = dataSnapShot.value.toString()
+//                                val String = dataSnapShot.key.toString()
+//
+//                                Log.d("Kanishk2", String.toString())
+//                                if (String == "Total_Price" && priceText.isNotEmpty() ){
+//
+//                                    Log.d("Kanishk2", valueText)
+//                                    val price = priceText.toDouble()
+//                                    val value = valueText.toDouble()
+//
+//                                    val total = price + value
+//                                    Log.d("Expense", "Yes $total")
+//                                    reference.child("Total_Price").setValue(total.toString())
+//                                    Toast.makeText(requireContext(),"Added Successfully",Toast.LENGTH_SHORT).show()
+//                                    return
+////                                    binding.namePerson.text.clear()
+////                                    binding.ExpenseTitle.text?.clear()
+////                                    binding.Price.text?.clear()
+//
+//                                }
+//                                else if (String != "Total_Price"){
+//                                    val price = priceText.toDouble()
+//                                    reference.child("Total_Price").setValue(price.toString())
+//                                    Toast.makeText(requireContext(),"Added Successfully",Toast.LENGTH_SHORT).show()
+//                                    return
+//                                }
+//
+//
+//
+//                            }
+//                        }
+//
+//
+//                    }
+//
+//                    override fun onCancelled(error: DatabaseError) {
+//                        // Handle onCancelled event if needed
+//                    }
+//                })
+
+
+            }
+
+
 
     }
 
@@ -220,8 +406,6 @@ class TripExpenseFragment : Fragment() {
 
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val tripsList = mutableListOf<Trip>()
-                    val expenses = mutableListOf<Expense>()
                 val expenseDetails = mutableListOf<ExpenseDetail>()
                     for (expenseSnapshot in snapshot.child("Expense").children) {
                         val personName = expenseSnapshot.key
@@ -250,15 +434,12 @@ class TripExpenseFragment : Fragment() {
 
                         }
 
-                        val expense = Expense(personName.toString(), expenseDetails)
-                        expenses.add(expense)
+
                     }
 
-                    val trip = Trip(TripName, expenses)
-                    tripsList.add(trip)
+
 
                 val adapter = ExpenseAdapter()
-                Log.d("Persom",tripsList.toString())
                 adapter.setTrips(expenseDetails)
                 binding.ExpenseRecyclerview.adapter = adapter
             }
@@ -281,12 +462,16 @@ class TripExpenseFragment : Fragment() {
                 if (dataSnapshot.exists()) {
                     for (snapshot in dataSnapshot.children) {
                         val key = snapshot.key
-                        val value = snapshot.value // This will give you the value stored at this key
-                        // Process the key and value as needed
+                        val value = snapshot.value
                         namesList.add(value.toString())
                     }
-                    val schooladapter = ArrayAdapter(requireContext(),R.layout.item_list,namesList)
-                    binding.namePerson.setAdapter(schooladapter)
+//                    val schooladapter = ArrayAdapter(requireContext(),R.layout.item_list,namesList)
+//                    binding.namePerson.setAdapter(schooladapter)
+
+
+                    binding.AddExpense.setOnClickListener {
+                        PushIndividualPrice(requireContext(),tripName.toString(),namesList)
+                    }
 
                     binding.IndividualExpenseBtn.setOnClickListener {
                         getIndividualData(requireContext(),tripName.toString(),namesList)

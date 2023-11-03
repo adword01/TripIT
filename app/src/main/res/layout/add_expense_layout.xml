@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/SchoolNameTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_height="wrap_content"
+        android:hint="Person">
+
+
+        <AutoCompleteTextView
+            android:textColor="@color/black"
+            android:id="@+id/namePerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_marginEnd="5dp"
+            android:hint="Purpose">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="@color/black"
+                android:id="@+id/ExpenseTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:hint="Price">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="@color/black"
+                android:id="@+id/Price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/AddButton"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:src="@drawable/add"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"/>-->
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/TabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Even division"
+
+            />
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price division" />
+
+
+
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/PersonCheckBoxrecyclerview"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"/>
+
+
+
+
+
+
+    <Button
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:text="Save"
+        android:id="@+id/SaveExpenseBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
