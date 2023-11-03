@@ -27,6 +27,7 @@ import com.example.tripit.databinding.FragmentTripExpenseBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -77,6 +78,7 @@ class TripExpenseFragment : Fragment() {
         val recyclerView = dialogView.findViewById<RecyclerView>(R.id.recyclerView)
         val namePerson = dialogView.findViewById<AutoCompleteTextView>(R.id.namePerson)
         val searchBtn = dialogView.findViewById<Button>(R.id.SearchBtn)
+        val expenseTextView = dialogView.findViewById<TextView>(R.id.expenseTextView)
         val TotalExpenseTextView = dialogView.findViewById<TextView>(R.id.TotalExpenseTextView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         val pgbar = dialogView.findViewById<ProgressBar>(R.id.pgbar)
@@ -91,11 +93,78 @@ class TripExpenseFragment : Fragment() {
 
         searchBtn.setOnClickListener {
             totalPrice = 0.0
-            val studentsRef = FirebaseDatabase.getInstance().reference.child("Trips").child(TripName).child("Expense").child(namePerson.text.toString())
+            val reference = FirebaseDatabase.getInstance().reference.child("Trips").child(FirebaseAuth.getInstance().uid.toString()).child(TripName).child("Expense").child(namePerson.text.toString())
 
 
             pgbar.visibility = View.VISIBLE
-            studentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            reference.get().addOnSuccessListener {
+                val expenseDetails = mutableListOf<ExpenseDetail>()
+                if (it.exists()){
+                    val DataSnapshot = it.children
+
+                    DataSnapshot.forEach { DataSnapshot->
+
+                        val DetailsSnapshot = DataSnapshot.child("Users")
+
+                        if (DetailsSnapshot.exists()){
+                            for (NewSnapshot in DetailsSnapshot.children){
+                                Log.d("ExpenseDetails",NewSnapshot.key.toString())
+
+                                    val personName = NewSnapshot.child("Name").value.toString()
+                                    val priceStr = NewSnapshot.child("Price").value.toString()
+
+                                    val price = if (priceStr != "null" && !priceStr.isNullOrBlank()) {
+                                        priceStr.toDouble()
+
+                                    } else {
+                                        // Handle the case when priceStr is null or "null"
+                                        0.0 // or any default value you prefer
+                                    }
+                                    val expense = ExpenseDetail(personName,"",price)
+                            expenseDetails.add(expense)
+
+                                if (expenseDetails.isNotEmpty()){
+                            Log.d("ExpenseDetails",expenseDetails.toString())
+                        }else{
+                            Log.d("ExpenseDetails","Kanishk")
+                        }
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
+                if(expenseDetails.isNotEmpty()){
+                    val expenseMap = expenseDetails.groupBy(ExpenseDetail::personName)
+                    val finalList = expenseMap.map { (personName, expenseDetails) ->
+                        val totalExpense = expenseDetails.sumByDouble { it.price }
+                        ExpenseDetail(personName, "", totalExpense)
+                    }
+
+
+
+                    val displayText = finalList.joinToString("   ") {
+                        "${it.personName} amount ${it.price}"
+                    }
+
+                    expenseTextView.text = displayText
+
+//                    for (expense in finalList) {
+//                        println("Person: ${expense.personName}, Total Expense: ${expense.price}")
+//                    }
+                }
+
+
+            }
+
+
+
+
+            reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val expenseDetails = mutableListOf<ExpenseDetail>()
 
@@ -278,7 +347,7 @@ class TripExpenseFragment : Fragment() {
 
     private fun pushData(dialog: AlertDialog,namPerson : String,Price: TextInputEditText,Puropose : String,TripName : String){
 
-        val reference = FirebaseDatabase.getInstance().reference.child("Trips").child(TripName)
+        val reference = FirebaseDatabase.getInstance().reference.child("Trips").child(FirebaseAuth.getInstance().uid.toString()).child(TripName)
 
 
        // val selectedPeople = adapter.getClickedPeople()
@@ -402,7 +471,7 @@ class TripExpenseFragment : Fragment() {
 
     private fun fetchTripsFromFirebase(TripName: String) {
         // Replace 'YOUR_DATABASE_REF' with the actual Firebase Realtime Database reference
-        val databaseRef = FirebaseDatabase.getInstance().reference.child("Trips").child(TripName)
+        val databaseRef = FirebaseDatabase.getInstance().reference.child("Trips").child(FirebaseAuth.getInstance().uid.toString()).child(TripName)
 
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -410,11 +479,9 @@ class TripExpenseFragment : Fragment() {
                     for (expenseSnapshot in snapshot.child("Expense").children) {
                         val personName = expenseSnapshot.key
 
-                        Log.d("Person",personName.toString())
 
                         for (detailSnapshot in expenseSnapshot.children) {
                             val Key = detailSnapshot.key
-                            Log.d("Person1",Key.toString())
                                 val purpose = detailSnapshot.child("Purpose").value.toString()
                                 val personName = detailSnapshot.child("Name").value.toString()
                                 val priceStr = detailSnapshot.child("Price").value.toString()
@@ -426,7 +493,6 @@ class TripExpenseFragment : Fragment() {
                                     0.0 // or any default value you prefer
                                 }
 
-                                Log.d("Person2",purpose + price)
                                 val expenseDetail = ExpenseDetail(personName,purpose, price)
                                 expenseDetails.add(expenseDetail)
 
@@ -455,7 +521,7 @@ class TripExpenseFragment : Fragment() {
         val sf = requireContext().getSharedPreferences("TripPrefs", Context.MODE_PRIVATE)
         val tripName = sf.getString("TripName",null)
 
-        val databaseReference = FirebaseDatabase.getInstance().getReference().child("Trips").child(tripName.toString()).child("Persons")
+        val databaseReference = FirebaseDatabase.getInstance().getReference().child("Trips").child(FirebaseAuth.getInstance().uid.toString()).child(tripName.toString()).child("Persons")
         val namesList = mutableListOf<String>()
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

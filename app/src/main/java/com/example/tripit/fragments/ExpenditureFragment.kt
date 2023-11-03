@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tripit.R
 import com.example.tripit.TripAdapter
 import com.example.tripit.databinding.FragmentExpenditureBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -58,7 +59,7 @@ class ExpenditureFragment : Fragment() {
 
         val sf = requireContext().getSharedPreferences("TripPrefs",Context.MODE_PRIVATE)
         // Firebase reference to your "Trips" node
-        val databaseReference = FirebaseDatabase.getInstance().getReference().child("Trips")
+        val databaseReference = FirebaseDatabase.getInstance().getReference().child("Trips").child(FirebaseAuth.getInstance().uid.toString())
 
 // Create a list to store the keys
         val tripKeys = mutableListOf<String>()
@@ -154,7 +155,7 @@ class ExpenditureFragment : Fragment() {
 //            "questions" to questions
 //        )
 
-        val databaseRef = database.getReference("Trips").child(binding.TripTitle.text.toString()).child("Persons")
+        val databaseRef = database.getReference("Trips").child(FirebaseAuth.getInstance().uid.toString()).child(binding.TripTitle.text.toString()).child("Persons")
         databaseRef.setValue(questions)
         binding.TripTitle.text?.clear()
         binding.numberOfEntries.text?.clear()

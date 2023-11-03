@@ -83,6 +83,7 @@ class HomeActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container,fragment)
         transaction.commit()
+        transaction.addToBackStack(null)
     }
 
 //    @Deprecated("Deprecated in Java")

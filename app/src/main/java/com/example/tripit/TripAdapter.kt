@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -48,7 +49,7 @@ class TripAdapter(private val data: List<String>, private val listener: OnItemCl
         fun onItemClick(item: String)
     }
     private fun getTotalExpense(TripName : String,Textview : TextView){
-        val reference = FirebaseDatabase.getInstance().reference.child("Trips").child(TripName)
+        val reference = FirebaseDatabase.getInstance().reference.child("Trips").child(FirebaseAuth.getInstance().uid.toString()).child(TripName)
 
 
 
