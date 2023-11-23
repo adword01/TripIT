@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="#031F2B"
     android:layout_height="match_parent"
     tools:context=".fragments.CreatePostFragment">
 
@@ -63,6 +63,7 @@
             android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="20dp"
@@ -96,6 +97,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textColor="@color/white"
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,6 +145,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
+            android:textColor="@color/white"
             android:id="@+id/caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -3,6 +3,7 @@
     <style name="Base.Theme.TripIT" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <item name="colorPrimary">#0d8bff</item>
+        <item name="android:statusBarColor">#031F2B</item>
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>

@@ -3,11 +3,20 @@ package com.example.tripit.fragments
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.tripit.District
+import com.example.tripit.DistrictAdapter
 import com.example.tripit.ImageAdapter
 import com.example.tripit.R
 import com.example.tripit.databinding.FragmentHomeBinding
@@ -25,9 +34,26 @@ class HomeFragment : Fragment() {
     private lateinit var viewPager2: ViewPager2
 
     private lateinit var _binding: FragmentHomeBinding
-
+    private lateinit var adapter : DistrictAdapter
     private lateinit var sharedPreferences: SharedPreferences
-
+    val districtNames = listOf(
+        "Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur",
+        "Kullu", "Lahaul", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"
+    )
+    val districtDataList = listOf(
+        District(R.drawable.bilaspurmap, "Bilaspur"),
+        District(R.drawable.chambamap, "Chamba"),
+        District(R.drawable.hamirpurmap, "Hamirpur"),
+        District(R.drawable.kangramap, "Kangra"),
+        District(R.drawable.kinnaurmap, "Kinnaur"),
+        District(R.drawable.kullumap, "Kullu"),
+        District(R.drawable.lahaulspitimap, "Lahaul & Spiti"),
+        District(R.drawable.mandimap, "Mandi"),
+        District(R.drawable.shimlamap, "Shimla"),
+        District(R.drawable.sirmaurmap, "Sirmaur"),
+        District(R.drawable.solanmap, "Solan"),
+        District(R.drawable.unamap, "Una")
+    )
     private val binding get() = _binding!!
 
     private lateinit var databaseReference: DatabaseReference
@@ -45,101 +71,25 @@ class HomeFragment : Fragment() {
         _binding.progressBar.visibility = View.VISIBLE
         checkProfileImageUrlInDatabase()
 
-        binding.bilaspur.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Bilaspur" )
-            editor.apply()
-        }
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.DistrictRecylerview.layoutManager = layoutManager
 
 
-        binding.chamba.setOnClickListener {
-            loadFragment(DistrictFragment())
+       val adapter = DistrictAdapter(districtDataList)
 
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Chamba" )
-            editor.apply()
-        }
+        adapter.setOnItemClickListener(object : DistrictAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                loadFragment(DistrictFragment())
 
-        binding.hamirpur.setOnClickListener {
-            loadFragment(DistrictFragment())
+                val editor = sharedPreferences.edit()
+                editor.putString("district", districtDataList[position].purpose)
+                editor.apply()
+            }
+        })
+        binding.DistrictRecylerview.adapter = adapter
 
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Hamirpur" )
-            editor.apply()
-        }
-        binding.kangra.setOnClickListener {
-            loadFragment(DistrictFragment())
+        setupSearchEditText(adapter)
 
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Kangra" )
-            editor.apply()
-        }
-
-        binding.kinnaur.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Kinnaur" )
-            editor.apply()
-        }
-
-        binding.kullu.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Kullu" )
-            editor.apply()
-        }
-
-        binding.lahaul.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Lahaul" )
-            editor.apply()
-        }
-
-        binding.mandi.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Mandi" )
-            editor.apply()
-        }
-
-        binding.shimla.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Shimla" )
-            editor.apply()
-        }
-
-        binding.sirmaur.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Sirmaur" )
-            editor.apply()
-        }
-
-        binding.solan.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Solan" )
-            editor.apply()
-        }
-
-        binding.una.setOnClickListener {
-            loadFragment(DistrictFragment())
-
-            val editor = sharedPreferences.edit()
-            editor.putString("district","Una" )
-            editor.apply()
-        }
 
         return binding.root
     }
@@ -191,23 +141,75 @@ class HomeFragment : Fragment() {
         // Check if the profile image URL exists in the database
         databaseReference = FirebaseDatabase.getInstance().reference.child("users")
 
-        databaseReference.child(useruid).child("profileImageUrl")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val imageUrl = dataSnapshot.value.toString()
-                    // If a profile image URL is available in the database, load the image
-                    Picasso.get().load(imageUrl).into(_binding.profileImage)
-                    _binding.progressBar.visibility = View.GONE
+        databaseReference.child(useruid).get().addOnSuccessListener {datasnapshot ->
+            val value = datasnapshot.value.toString()
+            val imageurl = datasnapshot.child("profileImageUrl").value.toString()
+            val Name = datasnapshot.child("name").value.toString()
+            binding.UserName.text = Name
+            Picasso.get().load(imageurl).into(_binding.profileImage)
+            _binding.progressBar.visibility = View.GONE
+            Log.d("kanishk",value)
 
+        }
+
+//        databaseReference.child(useruid).child("profileImageUrl")
+//
+//
+//
+//            .addListenerForSingleValueEvent(object : ValueEventListener {
+//                override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                    val imageUrl = dataSnapshot.value.toString()
+//                    // If a profile image URL is available in the database, load the image
+//                    Picasso.get().load(imageUrl).into(_binding.profileImage)
+//                    _binding.progressBar.visibility = View.GONE
+//
+//
+//                }
+//
+//                override fun onCancelled(databaseError: DatabaseError) {
+//                    // Handle errors here
+//                    _binding.progressBar.visibility = View.GONE
+//
+//                }
+//            })
+    }
+
+
+    private fun setupSearchEditText(adapter: DistrictAdapter) {
+        binding.searchView.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not used
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not used
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val searchEmployeeId = s.toString()
+                val searchEmpName = s.toString().capitalize().trim()
+
+                if (searchEmpName.isBlank()) {
+                    // If the search text is empty, restore the original data in the RecyclerView
+                    Log.d("Search",districtDataList.toString())
+                    adapter.submitList(districtDataList)
+                } else {
+
+                    binding.srchbtn.setOnClickListener {
+                        // Filter the employee data based on the entered employee ID
+                        val filteredList = districtDataList.filter { it.purpose == searchEmpName }
+                        if (filteredList.isNotEmpty()) {
+                            Log.d("Search",filteredList.toString())
+                            adapter.submitList(filteredList)
+                            adapter.notifyDataSetChanged()
+                        } else {
+                            Toast.makeText(requireContext(), "No employee found with ID $searchEmpName", Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
                 }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle errors here
-                    _binding.progressBar.visibility = View.GONE
-
-                }
-            })
+            }
+        })
     }
     private fun loadFragment(fragment: Fragment) {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()

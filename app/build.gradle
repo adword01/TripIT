@@ -30,9 +30,17 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        mlModelBinding true
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets'
+            }
+        }
     }
 }
 
@@ -43,15 +51,30 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-ml-modeldownloader")
+
+    // Also add the dependency for the TensorFlow Lite library and specify its version
+    implementation("org.tensorflow:tensorflow-lite:2.3.0")
     //Lottie
 //    def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:5.2.0"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 
     //Cred
     implementation 'club.cred:neopop:1.0.2'
 
     //Cred Synth
     implementation 'club.cred.android:synth:1.0.0'
+
+    //tensorflow
+
+
+    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation 'org.tensorflow:tensorflow-lite:2.6.0'
 
 
     //Dot layout
@@ -91,7 +114,8 @@ dependencies {
     //Mappls
     implementation 'com.mappls.sdk:mappls-android-sdk:8.0.8'
     implementation 'com.mappls.sdk:geofence-ui:1.0.0'
-
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
 
 
     testImplementation 'junit:junit:4.13.2'

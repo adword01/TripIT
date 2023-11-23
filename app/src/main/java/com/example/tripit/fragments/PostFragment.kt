@@ -68,41 +68,37 @@ class PostFragment : Fragment() {
 
     private fun retrievePostsFromDatabase() {
         val PostD = mutableListOf<Post>()
-        val databaseReference = FirebaseDatabase.getInstance().reference.child("posts").child(useruid)
+        val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 postsData.clear()
 
-                for (postSnapshot in dataSnapshot.children) {
-                    val PostData = postSnapshot.getValue(Post::class.java)
-                    PostData?.let {
-                        PostD.add(0,it)
+                for (UserSnapshot in dataSnapshot.children){
+                    for (postSnapshot in UserSnapshot.children) {
+                        val PostData = postSnapshot.getValue(Post::class.java)
+                        PostData?.let {
+                            PostD.add(0,it)
+                        }
+
+                        Log.d("Post",PostD.toString())
+
                     }
 
-                    Log.d("Post",PostD.toString())
+                    if (PostD.isNullOrEmpty()){
 
-//                    val postMap = HashMap<String, Any>()
-//                    postMap["username"] = postSnapshot.child("username").value.toString()
-//                    postMap["uid"] = postSnapshot.child("uid").value.toString()
-//                    postMap["post_number"] = postSnapshot.child("post_number").value as Long
-//                    postMap["content"] = postSnapshot.child("content").value.toString()
-//                    postMap["location"] = postSnapshot.child("location").value.toString()
-//                    postMap["imageUrl"] = postSnapshot.child("imageUrl").value.toString()
-//
-//                    postsData.add(postMap)
+                    }
+                    else{
+                        // Create and set the adapter with the retrieved data
+
+                        binding.ProgressBar.visibility = View.GONE
+                        val adapter = PostAdapter(PostD)
+                        binding.postRv.adapter = adapter
+                    }
                 }
 
-                if (PostD.isNullOrEmpty()){
 
-                }
-                else{
-                    // Create and set the adapter with the retrieved data
 
-                    binding.ProgressBar.visibility = View.GONE
-                    val adapter = PostAdapter(PostD)
-                    binding.postRv.adapter = adapter
-                }
 
             }
 

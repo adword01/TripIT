@@ -16,6 +16,10 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.lifecycleScope
+import com.example.tripit.R
 import com.example.tripit.databinding.FragmentCreatePostBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,6 +29,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -157,8 +165,81 @@ class CreatePostFragment : Fragment() {
             })
     }
 
-    private fun savePostToDatabase(imageUri: Uri,post_number : Int) {
-        val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
+//    private fun savePostToDatabase(imageUri: Uri,post_number : Int) {
+//        val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
+//        // Create a SimpleDateFormat instance with the desired format
+//
+//
+//        // Create a SimpleDateFormat instance with the desired format
+//        val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
+//
+//        // Get the current date
+//
+//        // Get the current date
+//        val currentDate = Date()
+//
+//        // Format the current date using the SimpleDateFormat
+//
+//        // Format the current date using the SimpleDateFormat
+//        val formattedDate = sdf.format(currentDate)
+//
+//        val storageRef = FirebaseStorage.getInstance().reference
+//        val imageRef = storageRef.child("$useruid/post_pictures/$post_number.jpg")
+//
+//        imageRef.putFile(imageUri)
+//            .addOnSuccessListener { taskSnapshot ->
+//                // Image uploaded successfully
+//                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+//                    val imageUrl = downloadUri.toString()
+//
+//                  //  databaseReference.child(useruid).child("profileImageUrl").setValue(imageUrl)
+//
+//                    val postMap = HashMap<String, Any>()
+//
+//                    postMap["username"] = binding.userName.text.toString()
+//                    postMap["ProfileImage"] = ProfileImage
+//                    postMap["post_number"] = post_number
+//                    postMap["content"] = binding.caption.text.toString()
+//                    postMap["location"] = binding.locationTxt.text.toString()
+//                    postMap["imageUrl"] = imageUrl
+//                    postMap["Post_Date"] = formattedDate// Use the profile image URL
+//
+//                    databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
+//                        .addOnCompleteListener { task ->
+//                            if (task.isSuccessful) {
+//                                Log.d("postNumber1",post_number.toString());
+//                                AddPostNumber(post_number)
+//                                dismissprogressbar()
+//                                Toast.makeText(requireContext(), "Post saved successfully", Toast.LENGTH_SHORT).show()
+//                            } else {
+//                                dismissprogressbar()
+//                                Toast.makeText(requireContext(), "Error saving post", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//
+//                    if (isAdded) { // Check if the fragment is still attached
+//                        // Display a success message if needed
+//                        dismissprogressbar()
+//                        Toast.makeText(requireContext(), "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
+//            .addOnFailureListener { e ->
+//                if (isAdded) { // Check if the fragment is still attached
+//                    // Handle image upload failure
+//                    Toast.makeText(requireContext(), "Image upload failed: $e", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//
+//
+//    }
+
+
+    private fun savePostToDatabase(imageUri: Uri, post_number: Int) {
+        // ...
+
+                val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
         // Create a SimpleDateFormat instance with the desired format
 
 
@@ -170,62 +251,71 @@ class CreatePostFragment : Fragment() {
         // Get the current date
         val currentDate = Date()
 
-        // Format the current date using the SimpleDateFormat
-
-        // Format the current date using the SimpleDateFormat
         val formattedDate = sdf.format(currentDate)
 
-        val storageRef = FirebaseStorage.getInstance().reference
+                val storageRef = FirebaseStorage.getInstance().reference
         val imageRef = storageRef.child("$useruid/post_pictures/$post_number.jpg")
 
-        imageRef.putFile(imageUri)
-            .addOnSuccessListener { taskSnapshot ->
-                // Image uploaded successfully
-                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
-                    val imageUrl = downloadUri.toString()
+        lifecycleScope.launch(Dispatchers.IO) { // Run in the IO dispatcher for network and disk I/O
+            try {
+                val taskSnapshot = imageRef.putFile(imageUri).await()
+                val downloadUri = imageRef.downloadUrl.await()
+                val imageUrl = downloadUri.toString()
 
-                  //  databaseReference.child(useruid).child("profileImageUrl").setValue(imageUrl)
+                Log.d("Kan","here1")
+                val postMap = HashMap<String, Any>()
+                postMap["username"] = binding.userName.text.toString()
+                postMap["ProfileImage"] = ProfileImage
+                postMap["post_number"] = post_number
+                postMap["content"] = binding.caption.text.toString()
+                postMap["location"] = binding.locationTxt.text.toString()
+                postMap["imageUrl"] = imageUrl
+                postMap["Post_Date"] = formattedDate
 
-                    val postMap = HashMap<String, Any>()
+                databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
+                    .addOnCompleteListener { task ->
 
-                    postMap["username"] = binding.userName.text.toString()
-                    postMap["ProfileImage"] = ProfileImage
-                    postMap["post_number"] = post_number
-                    postMap["content"] = binding.caption.text.toString()
-                    postMap["location"] = binding.locationTxt.text.toString()
-                    postMap["imageUrl"] = imageUrl
-                    postMap["Post_Date"] = formattedDate// Use the profile image URL
+                        Log.d("Kan","here2")
 
-                    databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Log.d("postNumber1",post_number.toString());
-                                AddPostNumber(post_number)
-                                dismissprogressbar()
-                                Toast.makeText(requireContext(), "Post saved successfully", Toast.LENGTH_SHORT).show()
-                            } else {
-                                dismissprogressbar()
-                                Toast.makeText(requireContext(), "Error saving post", Toast.LENGTH_SHORT).show()
-                            }
+                        if (task.isSuccessful) {
+                            Log.d("postNumber1", post_number.toString())
+                            AddPostNumber(post_number)
+                            dismissprogressbar()
+                            Toast.makeText(requireContext(), "Post saved successfully", Toast.LENGTH_SHORT).show()
+
+
+
+                            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+                            transaction.replace(R.id.container, PostFragment())
+                            transaction.commit()
+
+                        } else {
+                            dismissprogressbar()
+                            Toast.makeText(requireContext(), "Error saving post", Toast.LENGTH_SHORT).show()
                         }
+                    }
 
-                    if (isAdded) { // Check if the fragment is still attached
-                        // Display a success message if needed
+                withContext(Dispatchers.Main) {
+                    Log.d("Kan","here5")
+
+                        Log.d("Kan","here3")
+                        // UI-related operations if needed after the task completes
                         dismissprogressbar()
                         Toast.makeText(requireContext(), "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-                    }
+
+                }
+            } catch (e: Exception) {
+                Log.d("Kan","here4")
+                withContext(Dispatchers.Main) {
+
+                        Toast.makeText(requireContext(), "Image upload failed: $e", Toast.LENGTH_SHORT).show()
+
                 }
             }
-            .addOnFailureListener { e ->
-                if (isAdded) { // Check if the fragment is still attached
-                    // Handle image upload failure
-                    Toast.makeText(requireContext(), "Image upload failed: $e", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-
-
+        }
     }
+
 
     private fun AddPostNumber(postNumber : Int){
         databaseReference.child("PostNumber").child(useruid).setValue(hashMapOf(
@@ -247,8 +337,11 @@ class CreatePostFragment : Fragment() {
                 savePostToDatabase(imageUrl.toUri(),currentPostNumber)
                 Log.d("postNumber",currentPostNumber.toString());
             }else{
-                currentPostNumber = 0
+                currentPostNumber += 1
+                savePostToDatabase(imageUrl.toUri(),currentPostNumber)
             }
+        }.addOnFailureListener {
+
         }
 
 
