@@ -10,6 +10,7 @@ import com.example.tripit.fragments.HomeFragment
 import com.example.tripit.fragments.ItineraryFragment
 import com.example.tripit.fragments.PostFragment
 import com.example.tripit.fragments.SettingsFragment
+import com.example.tripit.fragments.TripPredictFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -46,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_nav ->{
-                    loadFragment(ItineraryFragment())
+                    loadFragment(TripPredictFragment())
 
 //                    binding.textMain.text="Message"
 //                    binding.textMain.setTextColor(Color.RED)

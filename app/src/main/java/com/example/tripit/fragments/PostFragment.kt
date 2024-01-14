@@ -69,43 +69,73 @@ class PostFragment : Fragment() {
     private fun retrievePostsFromDatabase() {
         val PostD = mutableListOf<Post>()
         val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
+        postsData.clear()
+        PostD.clear()
 
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                postsData.clear()
+        databaseReference.get().addOnSuccessListener {dataSnapshot ->
 
-                for (UserSnapshot in dataSnapshot.children){
-                    for (postSnapshot in UserSnapshot.children) {
-                        val PostData = postSnapshot.getValue(Post::class.java)
-                        PostData?.let {
-                            PostD.add(0,it)
-                        }
 
-                        Log.d("Post",PostD.toString())
-
+            for (UserSnapshot in dataSnapshot.children){
+                for (postSnapshot in UserSnapshot.children) {
+                    val PostData = postSnapshot.getValue(Post::class.java)
+                    PostData?.let {
+                        PostD.add(0,it)
                     }
 
-                    if (PostD.isNullOrEmpty()){
+                    Log.d("Post1",PostD.toString())
 
-                    }
-                    else{
-                        // Create and set the adapter with the retrieved data
-
-                        binding.ProgressBar.visibility = View.GONE
-                        val adapter = PostAdapter(PostD)
-                        binding.postRv.adapter = adapter
-                    }
                 }
 
+                if (PostD.isNullOrEmpty()){
 
+                }
+                else{
+                    // Create and set the adapter with the retrieved data
 
-
+                    binding.ProgressBar.visibility = View.GONE
+                    val adapter = PostAdapter(PostD)
+                    binding.postRv.adapter = adapter
+                }
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle errors here
-            }
-        })
+
+        }
+//        databaseReference.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//
+//                for (UserSnapshot in dataSnapshot.children){
+//                    for (postSnapshot in UserSnapshot.children) {
+//                        val PostData = postSnapshot.getValue(Post::class.java)
+//                        PostData?.let {
+//                            PostD.add(0,it)
+//                        }
+//
+//                        Log.d("Post",PostD.toString())
+//
+//                    }
+//
+//                    if (PostD.isNullOrEmpty()){
+//
+//                    }
+//                    else{
+//                        // Create and set the adapter with the retrieved data
+//
+//                        binding.ProgressBar.visibility = View.GONE
+//                        val adapter = PostAdapter(PostD)
+//                        binding.postRv.adapter = adapter
+//                    }
+//                }
+//
+//
+//
+//
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Handle errors here
+//            }
+//        })
     }
 
 

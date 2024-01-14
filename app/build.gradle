@@ -64,6 +64,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
 
+    //location
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+
+    implementation 'org.apache.commons:commons-text:1.9'
+
+
     //Cred
     implementation 'club.cred:neopop:1.0.2'
 

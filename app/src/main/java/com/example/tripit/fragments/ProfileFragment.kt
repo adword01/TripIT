@@ -1,6 +1,7 @@
 package com.example.tripit.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -152,6 +153,7 @@ class ProfileFragment : Fragment() {
 
         databaseReference.child(useruid).child("profileImageUrl")
             .addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("SuspiciousIndentation")
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val imageUrl = dataSnapshot.value.toString()
                         // If a profile image URL is available in the database, load the image

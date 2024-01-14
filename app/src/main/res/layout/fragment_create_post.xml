@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#031F2B"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".fragments.CreatePostFragment">
 
@@ -49,6 +49,7 @@
         tools:layout_editor_absoluteX="24dp">
 
         <ImageView
+            android:layout_gravity="center_vertical"
             android:id="@+id/add_location"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="20dp"
@@ -97,7 +98,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,7 +146,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:id="@+id/caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

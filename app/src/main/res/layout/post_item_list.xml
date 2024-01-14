@@ -13,7 +13,8 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginBottom="5dp"
+
+        android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,6 +29,7 @@
 <!--        tools:layout_editor_absoluteX="10dp" />-->
 
     <ImageView
+        android:layout_marginBottom="10dp"
         android:id="@+id/PostImageView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -59,12 +61,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
                 <TextView
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
                     android:maxLength="40"
                     android:text="User name"
                     android:textColor="@color/black"
@@ -73,13 +76,12 @@
                     app:layout_constraintStart_toEndOf="@+id/user_profile_img"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <ImageView
                     android:id="@+id/verified"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
                     android:src="@drawable/verify"
                     app:layout_constraintStart_toEndOf="@+id/user_name"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +101,10 @@
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Location by city and district"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/user_profile_img"
@@ -112,7 +117,10 @@
                 android:id="@+id/caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="monospace"
                 android:maxLines="8"
                 android:text="It IS a long established fact that a reader Will be
@@ -123,69 +131,69 @@ looking at its layout,"
 
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostImageView">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout10"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/PostImageView">-->
 
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:id="@+id/like_counter"
-            android:layout_margin="10dp"
-            android:foregroundGravity="center"
-            android:background="@drawable/unfilled_heart" />
+<!--        <ImageView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:id="@+id/like_counter"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:foregroundGravity="center"-->
+<!--            android:background="@drawable/unfilled_heart" />-->
 
-        <TextView
-            android:id="@+id/like_counter_no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Like Count"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-
-
-        <ImageView
-            android:id="@+id/comment_counter"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:foregroundGravity="center"
-            android:src="@drawable/comment" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Comment Count"
-            android:id="@+id/comment_counter_no"
-            android:textSize="12dp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/like_counter_no"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="Like Count"-->
+<!--            android:textSize="12dp"-->
+<!--            android:textStyle="bold" />-->
 
 
-    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/comment_counter"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:foregroundGravity="center"-->
+<!--            android:src="@drawable/comment" />-->
 
-    <ImageView
-        android:layout_width="30dp"
-        android:id="@+id/saved_counter"
-        android:layout_height="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center|right"
-        android:src="@drawable/unfilled_saved"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout10" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="Comment Count"-->
+<!--            android:id="@+id/comment_counter_no"-->
+<!--            android:textSize="12dp"-->
+<!--            android:textStyle="bold" />-->
+
+
+<!--    </LinearLayout>-->
+
+<!--    <ImageView-->
+<!--        android:layout_width="30dp"-->
+<!--        android:id="@+id/saved_counter"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_gravity="center|right"-->
+<!--        android:src="@drawable/unfilled_saved"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/linearLayout10" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
