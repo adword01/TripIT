@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tripit.ItineraryAdapter
+import com.example.tripit.adapters.ItineraryAdapter
 import com.example.tripit.LocationUtils
 import com.example.tripit.R
 import com.example.tripit.databinding.FragmentItineraryBinding

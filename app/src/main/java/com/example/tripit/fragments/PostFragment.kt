@@ -11,15 +11,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tripit.Post
-import com.example.tripit.PostAdapter
+import com.example.tripit.adapters.PostAdapter
 import com.example.tripit.R
 import com.example.tripit.databinding.FragmentPostBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 
 class PostFragment : Fragment() {

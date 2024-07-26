@@ -1,11 +1,12 @@
-package com.example.tripit
+package com.example.tripit.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.os.persistableBundleOf
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripit.ExpenseDetail
+import com.example.tripit.R
 
 class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.TripViewHolder>() {
     private var trips: List<ExpenseDetail> = emptyList()

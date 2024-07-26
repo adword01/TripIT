@@ -9,23 +9,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tripit.District
-import com.example.tripit.DistrictAdapter
-import com.example.tripit.ImageAdapter
+import com.example.tripit.adapters.DistrictAdapter
+import com.example.tripit.adapters.ImageAdapter
 import com.example.tripit.R
 import com.example.tripit.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlin.math.abs
 
@@ -105,7 +100,21 @@ class HomeFragment : Fragment() {
         imageList.add(R.drawable.hp5)
         imageList.add(R.drawable.hp6)
 
-        val adapter = ImageAdapter(imageList)
+        val imageName = ArrayList<String>()
+        imageName.add("Dhankar Lake")
+        imageName.add("Pangong Lake (Pangong Tso)")
+        imageName.add("Kasol")
+        imageName.add("Kasauli")
+        imageName.add("Hanogi Bridge")
+
+        val imageLocation = ArrayList<String>()
+        imageLocation.add("Lahaul & Spiti, Himachal Pradesh")
+        imageLocation.add("Leh, Ladakh")
+        imageLocation.add("Kullu, Himachal Pradesh")
+        imageLocation.add("Kasauli, Himachal Pradesh")
+        imageLocation.add("Mandi, Himachal Pradesh")
+
+        val adapter = ImageAdapter(imageList,imageName,imageLocation)
         viewPager2 = binding.defaultViewpager
         viewPager2.adapter = adapter
 

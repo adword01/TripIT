@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import club.cred.neopop.PopFrameLayout
+import com.example.tripit.adapters.OnboardPagerAdapter
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class OnboardActivity : AppCompatActivity() {

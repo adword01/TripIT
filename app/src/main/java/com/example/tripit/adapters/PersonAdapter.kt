@@ -1,4 +1,4 @@
-package com.example.tripit
+package com.example.tripit.adapters
 
 import android.content.Context
 import android.text.Editable
@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripit.PersonDataManager
+import com.example.tripit.R
 
-class PersonAdapter(private val people: List<String>, private val dataManager: PersonDataManager,val PersonName : String) :
+class PersonAdapter(private val people: List<String>, private val dataManager: PersonDataManager, val PersonName : String) :
     RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
     inner class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

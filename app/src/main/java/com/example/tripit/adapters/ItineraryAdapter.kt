@@ -1,4 +1,4 @@
-package com.example.tripit
+package com.example.tripit.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripit.R
 
 class ItineraryAdapter(private val items: List<String>) : RecyclerView.Adapter<ItineraryAdapter.ViewHolder>() {
 
@@ -31,9 +32,13 @@ class ItineraryAdapter(private val items: List<String>) : RecyclerView.Adapter<I
             itemTitle.text = item
 
             if (isFirstItem) {
-                itemcard.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.itinerary_selected_bg))
+                itemcard.setBackgroundColor(ContextCompat.getColor(itemView.context,
+                    R.color.itinerary_selected_bg
+                ))
             } else {
-                itemcard.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.itinerary_unselected_bg))
+                itemcard.setBackgroundColor(ContextCompat.getColor(itemView.context,
+                    R.color.itinerary_unselected_bg
+                ))
             }
 
             // Bind other views with item details if needed

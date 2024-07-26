@@ -1,4 +1,4 @@
-package com.example.tripit
+package com.example.tripit.adapters
 
 import android.os.Handler
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.tripit.R
 import java.util.Timer
 import java.util.TimerTask
 

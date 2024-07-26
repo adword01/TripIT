@@ -1,15 +1,14 @@
-package com.example.tripit
+package com.example.tripit.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tripit.fragments.DistrictFragment
+import com.example.tripit.District
+import com.example.tripit.R
 
 class DistrictAdapter( private var trips: List<District>): RecyclerView.Adapter<DistrictAdapter.TripViewHolder>() {
    // private var trips: List<District> = emptyList()

@@ -7,6 +7,10 @@
         android:adjustViewBounds="true"
         app:cardCornerRadius="10dp">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/imageView"
 
@@ -14,5 +18,36 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/black_gradiant"/>
+
+        <TextView
+            android:id="@+id/imageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place Name"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="bottom|start"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/imageLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:fontFamily="@font/poppins"
+            android:textSize="14sp"
+            android:layout_margin="20dp"
+            android:layout_gravity="bottom|start"
+            android:textColor="@color/white"/>
+
+    </FrameLayout>
 
     </androidx.cardview.widget.CardView>

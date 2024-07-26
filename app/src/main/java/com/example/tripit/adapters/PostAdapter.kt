@@ -1,4 +1,4 @@
-package com.example.tripit
+package com.example.tripit.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripit.Post
+import com.example.tripit.R
 import com.squareup.picasso.Picasso
 
 class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
