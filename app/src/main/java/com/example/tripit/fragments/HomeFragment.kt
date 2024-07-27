@@ -11,12 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tripit.District
 import com.example.tripit.adapters.DistrictAdapter
 import com.example.tripit.adapters.ImageAdapter
 import com.example.tripit.R
+import com.example.tripit.adapters.CategoryAdapter
 import com.example.tripit.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -117,6 +119,31 @@ class HomeFragment : Fragment() {
         val adapter = ImageAdapter(imageList,imageName,imageLocation)
         viewPager2 = binding.defaultViewpager
         viewPager2.adapter = adapter
+
+
+        //category adapter
+
+        // Sample data
+        val catList = listOf(
+            R.drawable.shangarh, R.drawable.bir, R.drawable.padampalace, /* add more images */
+            R.drawable.pinvalley, R.drawable.baijnath, R.drawable.keymonastry, /* add more images */
+            // Ensure you have 16 images or adjust the size accordingly
+        )
+        val catName = listOf(
+            "Nature ", "Adventure", "Historical", /* add more names */
+            "Wildlife", "Religious", "Scenic Views", /* add more names */
+            // Ensure you have names corresponding to the images
+        )
+
+        val categoryAdapter = CategoryAdapter(catList, catName)
+        binding.categoryRv.adapter = categoryAdapter
+
+        // Set up GridLayoutManager with 2 columns
+        binding.categoryRv.layoutManager = GridLayoutManager(requireContext(), 2)
+
+
+
+
 
         // Set the number of items to be kept in memory on each side of the current page
         viewPager2.offscreenPageLimit = 2 // Adjust as needed
