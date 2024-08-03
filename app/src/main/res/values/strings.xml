@@ -4,4 +4,55 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="api_key">ced1b2f5797366ff5dd8f36048e116ad</string>
 
+
+    <string-array name="Interests">
+        <item value="Cultural"/>
+        <item value="Adventure"/>
+        <item value="Nature"/>
+        <item value="Sightseeing"/>
+        <item value="Wildlife"/>
+        <item value="Shopping"/>
+        <item value="Relaxation"/>
+        <item value="History"/>
+        <item value="Spiritual"/>
+        <item value="Photography"/>
+        <item value="Festivals"/>
+        <item value="Sports"/>
+    </string-array>
+
+    <string-array name="Budget">
+        <item value="Low Budget"/>
+        <item value="Medium Budget"/>
+        <item value="High Budget"/>
+    </string-array>
+
+    <string-array name="Group_Size">
+        <item value="Solo"/>
+        <item value="Couple"/>
+        <item value="Family"/>
+        <item value="Group"/>
+    </string-array>
+
+    <string-array name="Duration">
+        <item value="1 Day"/>
+        <item value="2-3 Days"/>
+        <item value="4-5 Days"/>
+        <item value="1 Week"/>
+        <item value="2 Week"/>
+        <item value="1 Month"/>
+    </string-array>
+
+    <string-array name="Travel_Style">
+        <item value="Backpacking"/>
+        <item value="Luxury"/>
+        <item value="Eco-friendly"/>
+        <item value="Adventure"/>
+        <item value="Cultural"/>
+        <item value="Wellness"/>
+        <item value="Romantic"/>
+        <item value="Family-friendly"/>
+    </string-array>
+
+
+
 </resources>
