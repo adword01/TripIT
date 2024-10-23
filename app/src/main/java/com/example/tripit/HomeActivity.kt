@@ -5,9 +5,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tripit.databinding.ActivityHomeBinding
+import com.example.tripit.fragments.AddPlaceFragment
 import com.example.tripit.fragments.ExpenditureFragment
 import com.example.tripit.fragments.HomeFragment
 import com.example.tripit.fragments.ItineraryFragment
+import com.example.tripit.fragments.PlaceDetailsFragment
 import com.example.tripit.fragments.PostFragment
 import com.example.tripit.fragments.SettingsFragment
 import com.example.tripit.fragments.TripPredictFragment
@@ -54,7 +56,8 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_profile -> {
-                    loadFragment(SettingsFragment())
+                    loadFragment(PlaceDetailsFragment())
+//                    loadFragment(SettingsFragment())
 
 //                    binding.textMain.text="Profile"
 //                    binding.chipNavigationBar.showBadge(R.id.menu_settings)

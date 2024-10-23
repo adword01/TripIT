@@ -6,53 +6,89 @@
 
 
     <string-array name="Interests">
-        <item value="Cultural"/>
-        <item value="Adventure"/>
-        <item value="Nature"/>
-        <item value="Sightseeing"/>
-        <item value="Wildlife"/>
-        <item value="Shopping"/>
-        <item value="Relaxation"/>
-        <item value="History"/>
-        <item value="Spiritual"/>
-        <item value="Photography"/>
-        <item value="Festivals"/>
-        <item value="Sports"/>
+        <item>Cultural</item>
+        <item>Adventure</item>
+        <item>Nature</item>
+        <item>Sightseeing</item>
+        <item>Wildlife</item>
+        <item>Shopping</item>
+        <item>Relaxation</item>
+        <item>History</item>
+        <item>Spiritual</item>
+        <item>Photography</item>
+        <item>Festivals</item>
+        <item>Sports</item>
     </string-array>
 
     <string-array name="Budget">
-        <item value="Low Budget"/>
-        <item value="Medium Budget"/>
-        <item value="High Budget"/>
+        <item>"Low Budget"</item>
+        <item>Medium Budget</item>
+        <item>High Budget</item>
     </string-array>
 
     <string-array name="Group_Size">
-        <item value="Solo"/>
-        <item value="Couple"/>
-        <item value="Family"/>
-        <item value="Group"/>
+        <item>Solo</item>
+        <item>Couple</item>
+        <item>Family</item>
+        <item>Group</item>
     </string-array>
 
     <string-array name="Duration">
-        <item value="1 Day"/>
-        <item value="2-3 Days"/>
-        <item value="4-5 Days"/>
-        <item value="1 Week"/>
-        <item value="2 Week"/>
-        <item value="1 Month"/>
+        <item>"1 Day</item>
+        <item>"2-3 Days</item>
+        <item>"4-5 Days</item>
+        <item>"1 Week</item>
+        <item>"2 Week</item>
+        <item>"1 Month"</item>
     </string-array>
 
     <string-array name="Travel_Style">
-        <item value="Backpacking"/>
-        <item value="Luxury"/>
-        <item value="Eco-friendly"/>
-        <item value="Adventure"/>
-        <item value="Cultural"/>
-        <item value="Wellness"/>
-        <item value="Romantic"/>
-        <item value="Family-friendly"/>
+        <item>Backpacking</item>
+        <item>Luxury</item>
+        <item>Eco-friendly</item>
+        <item>Adventure</item>
+        <item>Cultural</item>
+        <item>Wellness</item>
+        <item>Romantic</item>
+        <item>Family-friendly</item>
     </string-array>
 
+    <string-array name="Himachal_Districts">
+        <item>Bilaspur</item>
+        <item>Chamba</item>
+        <item>Hamirpur</item>
+        <item>Kangra</item>
+        <item>Kinnaur</item>
+        <item>Kullu</item>
+        <item>Lahaul &amp; Spiti</item>
+        <item>Mandi</item>
+        <item>Shimla</item>
+        <item>Sirmaur</item>
+        <item>Solan</item>
+        <item>Una</item>
+    </string-array>
+
+    <string-array name="Travel_Options">
+        <item>Bus</item>
+        <item>Train</item>
+        <item>Flight</item>
+        <item>Car</item>
+    </string-array>
+
+    <string-array name="Time_Visit">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
 
 </resources>

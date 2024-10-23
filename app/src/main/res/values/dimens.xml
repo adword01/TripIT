@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="page_margin">0dp</dimen>
+    <dimen name="chip_spacing">8dp</dimen>
+    <dimen name="chip_min_height">48dp</dimen>
+    <dimen name="spacing_card">10dp</dimen>
 </resources>
