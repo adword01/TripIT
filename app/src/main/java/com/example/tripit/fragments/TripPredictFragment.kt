@@ -188,6 +188,9 @@ class TripPredictFragment : Fragment() {
             )
         }
 
+        binding.itineraryBtn.setOnClickListener {
+            loadFragment(ItineraryFragment())
+        }
 
         val items = listOf(
            "Landmarks",
@@ -253,6 +256,12 @@ class TripPredictFragment : Fragment() {
         return binding.root
     }
 
+    private fun loadFragment(fragment: Fragment) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container,fragment)
+        transaction.commit()
+        transaction.addToBackStack(null)
+    }
 
     private fun getPrediction(){
 
