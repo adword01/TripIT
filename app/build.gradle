@@ -73,9 +73,9 @@ dependencies {
 
     //Cred
     implementation 'club.cred:neopop:1.0.2'
-
-    //Cred Synth
-    implementation 'club.cred.android:synth:1.0.0'
+//
+////    //Cred Synth
+//    implementation ("club.cred.android:synth:1.0.0")
 
     //tensorflow
 

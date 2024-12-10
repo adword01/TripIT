@@ -317,8 +317,7 @@
                 android:layout_marginEnd="20dp"
                 android:id="@+id/add_place_time_visit_spinner"/>
 
-
-            <club.cred.synth.views.SynthButton
+            <Button
                 android:id="@+id/add_place_review_btn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -330,7 +329,7 @@
                >
 
 
-            </club.cred.synth.views.SynthButton>
+            </Button>
 
 
 

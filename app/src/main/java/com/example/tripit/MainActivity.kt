@@ -34,14 +34,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }).execute()
 
-        val request = RecommendationRequest(
-            theme = "Religious Sites",
-            rating = 3,
-            days = 1,
-            latitude = 31.59331277,
-            longitude = 76.27356938
-        )
-
 
         val jsonObject = JSONObject().apply {
             put("theme", "Religious Sites")
@@ -54,65 +46,65 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), jsonObject.toString())
-
-        val apiservce = PostApiPlaces.apiService
-        val call = apiservce.postData(theme = "Religious Sites",
-            rating = 3,
-            days =  1,
-            latitude = 31.59331277,
-            longitude = 76.27356938)
-
-        call.enqueue(object : Callback<RecommendationResponse> {
-            override fun onResponse(
-                call: Call<RecommendationResponse>,
-                response: Response<RecommendationResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val recommendationResponse = response.body()
-                    val recommendedDestinations = recommendationResponse?.recommendedDestinations
-
-                    if (recommendedDestinations != null && recommendedDestinations.isNotEmpty()) {
-                        // Create a list to store destination information
-                        val destinationList = mutableListOf<Preditction>()
-
-                        // Process the list of recommended destinations
-                        for (destination in recommendedDestinations) {
-
-                            val infor = Preditction(destination.District,destination.placeName,destination.Theme,destination.Rating)
-                            val destinationInfo = "" +
-                                    "" +
-                                    "" +
-                                    "Place Name: ${destination.placeName}, " +
-                                    "Theme: ${destination.Theme}, " +
-                                    "Rating: ${destination.Rating}, " +
-                                    "District: ${destination.District}"
-
-                            // Add the destination information to the list
-                            destinationList.add(infor)
-
-                            Log.d("Kanishk1", destinationInfo)
-                            // Add your logic to handle each recommended destination
-                        }
-
-                        // Now, destinationList contains information about each recommended destination
-                        // You can use this list as needed
-                    } else {
-                        Log.d("Kanishk1", "No recommended destinations found")
-                    }
-                } else {
-                    // Request failed
-                    Log.e("Kanishk", "HTTP status code: ${response.code()}")
-                    val errorBody = response.errorBody()?.string()
-                    Log.e("KanishkErr", "Error body: $errorBody")
-                }
-            }
-
-            override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
-                // Request failed due to network error or other issues
-                Log.d("Kanishk", t.toString())
-            }
-        })
+//        val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), jsonObject.toString())
+//
+//        val apiservce = PostApiPlaces.apiService
+//        val call = apiservce.postData(theme = "Religious Sites",
+//            rating = 3,
+//            days =  1,
+//            latitude = 31.59331277,
+//            longitude = 76.27356938)
+//
+//        call.enqueue(object : Callback<RecommendationResponse> {
+//            override fun onResponse(
+//                call: Call<RecommendationResponse>,
+//                response: Response<RecommendationResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                    val recommendationResponse = response.body()
+//                    val recommendedDestinations = recommendationResponse?.recommendedDestinations
+//
+//                    if (recommendedDestinations != null && recommendedDestinations.isNotEmpty()) {
+//                        // Create a list to store destination information
+//                        val destinationList = mutableListOf<Preditction>()
+//
+//                        // Process the list of recommended destinations
+//                        for (destination in recommendedDestinations) {
+//
+//                            val infor = Preditction(destination.District,destination.placeName,destination.Theme,destination.Rating)
+//                            val destinationInfo = "" +
+//                                    "" +
+//                                    "" +
+//                                    "Place Name: ${destination.placeName}, " +
+//                                    "Theme: ${destination.Theme}, " +
+//                                    "Rating: ${destination.Rating}, " +
+//                                    "District: ${destination.District}"
+//
+//                            // Add the destination information to the list
+//                            destinationList.add(infor)
+//
+//                            Log.d("Kanishk1", destinationInfo)
+//                            // Add your logic to handle each recommended destination
+//                        }
+//
+//                        // Now, destinationList contains information about each recommended destination
+//                        // You can use this list as needed
+//                    } else {
+//                        Log.d("Kanishk1", "No recommended destinations found")
+//                    }
+//                } else {
+//                    // Request failed
+//                    Log.e("Kanishk", "HTTP status code: ${response.code()}")
+//                    val errorBody = response.errorBody()?.string()
+//                    Log.e("KanishkErr", "Error body: $errorBody")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
+//                // Request failed due to network error or other issues
+//                Log.d("Kanishk", t.toString())
+//            }
+//        })
 
 
 //        call.enqueue(object : Callback<RecommendationResponse> {

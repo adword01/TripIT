@@ -21,11 +21,11 @@ class PredictionAdapter (private val data: List<Preditction>) :
         val item = data[position]
 
         // Bind data to the views in the list item layout
-        holder.PredictedPlace.text = item.placeName
-        holder.predictedDisctrict.text = item.District
-        holder.ratings.text = "${item.Rating}/5"
+        holder.PredictedPlace.text = item.place_name
+        holder.predictedDisctrict.text = item.city
+        holder.ratings.text = item.description
 
-        getDrawableIdForPlace(item.placeName.toString(),placeItems)?.let {
+        getDrawableIdForPlace(item.place_name.toString(),placeItems)?.let {
             holder.ImagePlace.setBackgroundResource(
                 it
             )

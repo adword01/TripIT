@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tripit.District
+import com.example.tripit.Global
 import com.example.tripit.adapters.DistrictAdapter
 import com.example.tripit.adapters.ImageAdapter
 import com.example.tripit.R
@@ -29,7 +30,7 @@ import kotlin.math.abs
 class HomeFragment : Fragment() {
 
     private lateinit var viewPager2: ViewPager2
-
+    private lateinit var global: Global
     private lateinit var _binding: FragmentHomeBinding
     private lateinit var adapter : DistrictAdapter
     private lateinit var sharedPreferences: SharedPreferences
@@ -61,12 +62,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        global = Global.getInstance()
         sharedPreferences = requireContext().getSharedPreferences("DistrictPref", Context.MODE_PRIVATE)
 
+        Log.d("Name",global.name.toString())
 
-        _binding.progressBar.visibility = View.VISIBLE
-        checkProfileImageUrlInDatabase()
+        if (global.name==null){
+            _binding.progressBar.visibility = View.VISIBLE
+            checkProfileImageUrlInDatabase()
+        }else{
+            binding.UserName.text = global.name
+            Picasso.get().load(global.imageUrl).into(_binding.profileImage)
+        }
+
 
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.DistrictRecylerview.layoutManager = layoutManager
@@ -182,6 +190,8 @@ class HomeFragment : Fragment() {
             val imageurl = datasnapshot.child("profileImageUrl").value.toString()
             val Name = datasnapshot.child("name").value.toString()
             binding.UserName.text = Name
+            global.name=Name
+            global.imageUrl=imageurl
             Picasso.get().load(imageurl).into(_binding.profileImage)
             _binding.progressBar.visibility = View.GONE
             Log.d("kanishk",value)

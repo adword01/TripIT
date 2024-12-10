@@ -1,8 +1,7 @@
 package com.example.tripit
 
 data class Preditction(
-    var District : String?,
-    var placeName : String?,
-    var Theme : String?,
-    var Rating : Double
+    val place_name: String,
+    val city: String,
+    val description: String
 )

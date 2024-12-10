@@ -81,6 +81,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.signIn.setOnClickListener {
+            Global.getInstance().name=null
+            Global.getInstance().imageUrl=null
             login()
         }
 
