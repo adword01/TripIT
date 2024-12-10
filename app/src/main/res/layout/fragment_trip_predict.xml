@@ -79,7 +79,7 @@
                 android:id="@+id/selectedTags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFEB3B"
+                android:textColor="#2196F3"
                 android:text="Selected Tags: None"
                 android:fontFamily="@font/poppins"
                 android:layout_marginStart="25dp"/>

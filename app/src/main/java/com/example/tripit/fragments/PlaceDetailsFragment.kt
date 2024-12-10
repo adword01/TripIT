@@ -33,7 +33,6 @@ class PlaceDetailsFragment : Fragment() {
 
     private val viewModel: PlaceDetailsViewModel by viewModels()
     private lateinit var recyclerView1: RecyclerView
-//    private lateinit var recyclerView2: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +46,6 @@ class PlaceDetailsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_place_details, container, false)
 
         recyclerView1 = view.findViewById(R.id.recycler_view_1)
-//        recyclerView2 = view.findViewById(R.id.recycler_view_2)
 
         setupRecyclerViews()
 
@@ -57,7 +55,6 @@ class PlaceDetailsFragment : Fragment() {
             while (true) {
                 val position = order[i % order.size]
                 recyclerView1.smoothScrollToPosition(position)
-//                recyclerView2.smoothScrollToPosition(position)
                 i++
                 delay(floor(300 * SCROLL_SLOW_FACTOR).toLong())
             }
@@ -68,7 +65,6 @@ class PlaceDetailsFragment : Fragment() {
 
     private fun setupRecyclerViews() {
         recyclerView1.init(withParallax = true)
-//        recyclerView2.init(withParallax = false)
     }
 
     private fun RecyclerView.init(withParallax: Boolean) {

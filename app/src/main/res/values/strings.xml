@@ -138,6 +138,23 @@
     </string-array>
 
 
+    <string-array name="API_Output_PARAMS">
+        <item>Place_name</item>
+        <item>City</item>
+        <item>Description</item>
+        <item>processed_tags</item>
+        <item>district</item>
+        <item>duration</item>
+        <item>travel_option</item>
+        <item>travel_style</item>
+        <item>old_age</item>
+        <item>young_age</item>
+        <item>avg_expense_per_day</item>
+        <item>weather</item>
+
+    </string-array>
+
+
 
 
 
