@@ -4,12 +4,14 @@
     >
     <solid
         android:color="@color/white"/>
-<corners
-    android:radius="30dp"/>
+    <stroke android:color="#804CAF50"
+        android:width="2dp"/>
+    <corners
+        android:radius="30dp"/>
     <gradient
         android:angle="90"
-        android:endColor="#ff00ffff"
-        android:startColor="#000fff"
+        android:endColor="#3200FFFF"
+        android:startColor="#404CAF50"
         android:type="radial"/>
 
 </shape>

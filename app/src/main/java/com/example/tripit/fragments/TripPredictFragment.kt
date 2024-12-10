@@ -177,9 +177,9 @@ class TripPredictFragment : Fragment() {
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            binding.Location.setOnClickListener {
-                requestLocation()
-            }
+//            binding.Location.setOnClickListener {
+//                requestLocation()
+//            }
 
         } else {
             // Request location permission
@@ -205,8 +205,8 @@ class TripPredictFragment : Fragment() {
         )
 
 
-        val adapter = ArrayAdapter(requireContext(),R.layout.item_text,items)
-        binding.signupClass.setAdapter(adapter)
+//        val adapter = ArrayAdapter(requireContext(),R.layout.item_text,items)
+//        binding.signupClass.setAdapter(adapter)
 
 //        val recommendedDestinations = listOf(
 //            Preditction("Bilaspur", "Naina Devi Temple", "Religious Sites", 4.5),
@@ -230,16 +230,12 @@ class TripPredictFragment : Fragment() {
         }
 
 
-        val ratingStr = binding.Ratings.text.toString()
-        val daysStr = binding.DaysEditText.text.toString()
-        val latitudeStr = binding.Latitude.text.toString()
-        val longitudeStr = binding.Longitude.text.toString()
 
         binding.Search.setOnClickListener {
 
          //   Log.d("Text","$theme $ratingStr $daysStr $latitudeStr $longitudeStr")
 
-            if (binding.signupClass.text.toString().isNullOrEmpty() && binding.Ratings.text.toString().isNullOrEmpty() && binding.DaysEditText.text.toString().isNullOrEmpty() && binding.Latitude.text.toString().isNullOrEmpty() && binding.Longitude.text.toString().isNullOrEmpty()) {
+            if (binding.inputCity.text.toString().isNullOrEmpty() ) {
 
                 Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
 
@@ -293,9 +289,9 @@ class TripPredictFragment : Fragment() {
 //            city = binding.Longitude.text.toString())
 
         val request = RecommendationRequest(
-            user_input = binding.Latitude.text.toString(),
-            city =  binding.Longitude.text.toString(),
-            top_n = binding.DaysEditText.text.toString().toInt()
+            user_input = ,
+            city =  binding.inputCity.text.toString(),
+            top_n = 5
         )
 
         PostApiPlaces.apiService.getRecommendations(request).enqueue(object : Callback<RecommendationResponse> {
@@ -428,7 +424,7 @@ class TripPredictFragment : Fragment() {
 //    }
 
 
-    @SuppressLint("MissingPermission")
+    /*@SuppressLint("MissingPermission")
     private fun requestLocation() {
 
         fusedLocationClient.lastLocation
@@ -439,8 +435,8 @@ class TripPredictFragment : Fragment() {
                     val longitude = location.longitude
 
 
-                    binding.Latitude.setText(latitude.toString())
-                    binding.Longitude.setText(longitude.toString())
+//                    binding.Latitude.setText(latitude.toString())
+//                    binding.Longitude.setText(longitude.toString())
 
                     // Use latitude and longitude as needed
                     println("Latitude: $latitude, Longitude: $longitude")
@@ -453,7 +449,7 @@ class TripPredictFragment : Fragment() {
                 // Handle the failure to get location
                 println("Failed to get location: ${exception.message}")
             }
-    }
+    }*/
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -464,7 +460,7 @@ class TripPredictFragment : Fragment() {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed to get location
-                requestLocation()
+//                requestLocation()
             } else {
                 // Permission denied, handle accordingly
                 println("Location permission denied")

@@ -7,168 +7,126 @@
     android:orientation="vertical"
     tools:context=".fragments.TripPredictFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <TextView
         android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:text="Select Theme"
+        android:text="Select Travel Parameters"
+        android:fontFamily="@font/poppins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Theme"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_margin="10dp"
-        android:hint="Theme"
+        android:hint="City Name"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CategoryField">
+        >
 
-
-        <AutoCompleteTextView
-            android:id="@+id/signup_class"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:inputType="none" />
+            android:fontFamily="@font/poppins"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Select Tag(s)"
+        android:fontFamily="@font/poppins"
+        android:layout_marginStart="20dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+    <include
+        layout="@layout/add_place_interest_view"
+        android:id="@+id/add_place_interest_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Select Number of Outputs"
+        android:fontFamily="@font/poppins"
+        android:layout_marginStart="20dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="5"
+            android:padding="10dp"
+            android:fontFamily="@font/poppins"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:textSize="16dp"
             android:layout_marginEnd="5dp"
-            android:textColorHint="#D3D3D3"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DOBTextFieldLayout">
+            android:gravity="center"
+            android:background="@drawable/output_selector_bg"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Latitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Latitude"
-                android:imeOptions="actionNext"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:nextFocusDown="@+id/login_password" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColorHint="#D3D3D3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DOBTextFieldLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Longitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Longitude"
-                android:layout_marginEnd="5dp"
-                android:imeOptions="actionNext"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:nextFocusDown="@+id/login_password" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <ImageView
-            android:id="@+id/Location"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/add"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
+            android:layout_weight="1"
+            android:text="10"
+            android:padding="10dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/output_selector_unselected_bg"
+            />
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
+    <Button
+        android:id="@+id/Search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColorHint="#D3D3D3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DOBTextFieldLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Ratings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ratings Out of 5"
-                android:inputType="numberDecimal"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/login_password" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:textColorHint="#D3D3D3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DOBTextFieldLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/DaysEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="No. of Days"
-                android:imeOptions="actionNext"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:inputType="numberDecimal"
-                android:nextFocusDown="@+id/login_password" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <ImageView
-            android:layout_marginStart="5dp"
-            android:id="@+id/Search"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/search_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="Search Place"
+        android:layout_margin="20dp"/>
 
 
     <LinearLayout
@@ -186,6 +144,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/itinerary_btn"
             android:layout_margin="6dp"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/black"
             app:cardCornerRadius="20dp"
             android:layout_width="match_parent"
@@ -197,6 +156,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
+                android:visibility="gone"
                 android:text="View detail itinerary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -206,7 +166,8 @@
 
     </LinearLayout>
 
-
+    </LinearLayout>
+    </ScrollView>
 
 <!--    -->
 <!--    <TextView-->

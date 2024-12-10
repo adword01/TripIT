@@ -18,183 +18,331 @@
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cultural"
-            android:layout_margin="10dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:background="@drawable/text_bg"
-            />
-
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Adventure"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/text_bg"
+            android:backgroundTint="@color/gray_20"
             />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nature"
-            android:layout_margin="10dp"
+            android:text="Art"
+            android:fontFamily="@font/poppins"
+
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="12dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/text_bg"
+            android:backgroundTint="@color/gray_20"
+
             />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sightseeing"
-            android:layout_margin="10dp"
-            android:textColor="@color/white"
+            android:text="Boating"
+            android:layout_margin="5dp"            android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins"
+
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:background="@drawable/text_bg"
+            android:backgroundTint="@color/gray_20"
+
+            />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Culture"
+            android:layout_margin="5dp"            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            android:fontFamily="@font/poppins"
+
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:backgroundTint="@color/gray_20"
+
             />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wildlife"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:text="Festivals"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
+
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shopping"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:text="Hiking"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Relaxation"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:text="Historical"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="History"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:text="Nature"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Spiritual"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:text="Offbeat"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Photography"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Festivals"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:text="Relaxation"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="River Rafting"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rock Climbing"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shopping"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sightseeing"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spiritual"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sports"
-                android:layout_margin="10dp"
-                android:textColor="@color/white"
+                android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="16dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:background="@drawable/text_bg"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trekking"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Water Sports"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
+                />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wildlife"
+                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:backgroundTint="@color/gray_20"
+
                 />
 
 

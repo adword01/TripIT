@@ -23,7 +23,7 @@ class PredictionAdapter (private val data: List<Preditction>) :
         // Bind data to the views in the list item layout
         holder.PredictedPlace.text = item.place_name
         holder.predictedDisctrict.text = item.city
-        holder.ratings.text = item.description
+//        holder.ratings.text = item.description
 
         getDrawableIdForPlace(item.place_name.toString(),placeItems)?.let {
             holder.ImagePlace.setBackgroundResource(
@@ -40,8 +40,8 @@ class PredictionAdapter (private val data: List<Preditction>) :
         val cardView: CardView = itemView.findViewById(R.id.cardView)
         val PredictedPlace: TextView = itemView.findViewById(R.id.PredictedPlace)
         val predictedDisctrict: TextView = itemView.findViewById(R.id.predictedDisctrict)
-        val ratings: TextView = itemView.findViewById(R.id.Rating)
-        val ImagePlace: ImageView = itemView.findViewById(R.id.ImagePlace)
+//        val ratings: TextView = itemView.findViewById(R.id.Rating)
+        val ImagePlace: ImageView = itemView.findViewById(R.id.PlaceImage)
     }
 
 

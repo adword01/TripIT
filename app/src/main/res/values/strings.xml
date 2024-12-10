@@ -90,5 +90,55 @@
         <item>December</item>
     </string-array>
 
+    <string-array name="primary_paramters">
+        <item>place_name</item>
+        <item>place_district</item>
+        <item>place_state</item>
+        <item>Interests</item>
+        <item>Budget</item>
+        <item>Group Size</item>
+        <item>Duration</item>
+        <item>Travel Style</item>
+        <item>Transport Options</item>
+        <item>Best Time To Visit</item>
+        <item>place_id</item>
+        <item>tags</item>
+        <item>Suitable For Women</item>
+        <item>Suitable For Children</item>
+        <item>Suitable For Old Age</item>
+        <item>Description</item>
+    </string-array>
+
+
+    <string-array name="tags">
+        <item>Adventure</item>
+        <item>Art</item>
+        <item>Boating</item>
+        <item>Cultural</item>
+        <item>Culture</item>
+        <item>Family</item>
+        <item>Festivals</item>
+        <item>Hiking</item>
+        <item>Historical</item>
+        <item>History</item>
+        <item>Nature</item>
+        <item>Offbeat</item>
+        <item>Offbeat Location</item>
+        <item>Photography</item>
+        <item>Relaxation</item>
+        <item>River Rafting</item>
+        <item>Rock Climbing</item>
+        <item>Shopping</item>
+        <item>Sightseeing</item>
+        <item>Spiritual</item>
+        <item>Sports</item>
+        <item>Trekking</item>
+        <item>Water Sports</item>
+        <item>Wildlife</item>
+    </string-array>
+
+
+
+
 
 </resources>
