@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tripit.PlaceItem
@@ -21,6 +22,7 @@ import com.example.tripit.PostApiPlaces
 import com.example.tripit.PredictionAdapter
 import com.example.tripit.Preditction
 import com.example.tripit.R
+import com.example.tripit.RecommendationRequest
 import com.example.tripit.RecommendationResponse
 import com.example.tripit.databinding.FragmentTripPredictBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -206,18 +208,18 @@ class TripPredictFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(),R.layout.item_text,items)
         binding.signupClass.setAdapter(adapter)
 
-        val recommendedDestinations = listOf(
-            Preditction("Bilaspur", "Naina Devi Temple", "Religious Sites", 4.5),
-            Preditction("Una", "Chintpurni Temple", "Religious Sites", 4.5),
-            Preditction("Una", "Dharamshala Mahanta", "Religious Sites", 4.1),
-            Preditction("Simraur", "Baba Balak Nath Temple", "Religious Sites", 4.2),
-            Preditction("Simraur", "Kathgarh Temple", "Religious Sites", 4.1),
-            Preditction("Una", "Gurudwara Sahib Amb", "Religious Sites", 4.0),
-            Preditction("Hamirpur", "Baba Balak Nath Temple", "Religious Sites", 4.4),
-            Preditction("Simraur", "Shiv Temple", "Religious Sites", 4.0),
-            Preditction("Una", "Dera Sant Pura Danna", "Religious Sites", 4.0),
-            Preditction("Bilaspur", "Markandeya Temple", "Religious Sites", 4.1)
-        )
+//        val recommendedDestinations = listOf(
+//            Preditction("Bilaspur", "Naina Devi Temple", "Religious Sites", 4.5),
+//            Preditction("Una", "Chintpurni Temple", "Religious Sites", 4.5),
+//            Preditction("Una", "Dharamshala Mahanta", "Religious Sites", 4.1),
+//            Preditction("Simraur", "Baba Balak Nath Temple", "Religious Sites", 4.2),
+//            Preditction("Simraur", "Kathgarh Temple", "Religious Sites", 4.1),
+//            Preditction("Una", "Gurudwara Sahib Amb", "Religious Sites", 4.0),
+//            Preditction("Hamirpur", "Baba Balak Nath Temple", "Religious Sites", 4.4),
+//            Preditction("Simraur", "Shiv Temple", "Religious Sites", 4.0),
+//            Preditction("Una", "Dera Sant Pura Danna", "Religious Sites", 4.0),
+//            Preditction("Bilaspur", "Markandeya Temple", "Religious Sites", 4.1)
+//        )
         binding.PredictionRecyclerview.layoutManager = LinearLayoutManager(context)
      //   binding.PredictionRecyclerview.adapter = PredictionAdapter(recommendedDestinations.toList())
 
@@ -280,68 +282,105 @@ class TripPredictFragment : Fragment() {
         val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), jsonObject.toString())
 
         val apiservce = PostApiPlaces.apiService
-        val call = apiservce.postData(theme = binding.signupClass.text.toString(),
-            rating = binding.Ratings.text.toString().toInt(),
-            days =  binding.DaysEditText.text.toString().toInt(),
-            latitude = binding.Latitude.text.toString().toDouble(),
-            longitude = binding.Longitude.text.toString().toDouble())
+//        val call = apiservce.postData(theme = binding.signupClass.text.toString(),
+//            rating = binding.Ratings.text.toString().toInt(),
+//            days =  binding.DaysEditText.text.toString().toInt(),
+//            latitude = binding.Latitude.text.toString().toDouble(),
+//            longitude = binding.Longitude.text.toString().toDouble())
 
+//        val call = apiservce.postData(binding.Latitude.text.toString(),
+//            top_n =  binding.DaysEditText.text.toString().toInt(),
+//            city = binding.Longitude.text.toString())
 
-        call.enqueue(object : Callback<RecommendationResponse> {
+        val request = RecommendationRequest(
+            user_input = binding.Latitude.text.toString(),
+            city =  binding.Longitude.text.toString(),
+            top_n = binding.DaysEditText.text.toString().toInt()
+        )
+
+        PostApiPlaces.apiService.getRecommendations(request).enqueue(object : Callback<RecommendationResponse> {
             override fun onResponse(
                 call: Call<RecommendationResponse>,
                 response: Response<RecommendationResponse>
             ) {
                 if (response.isSuccessful) {
-                    val recommendationResponse = response.body()
-                    val recommendedDestinations = recommendationResponse?.recommendedDestinations
+                    val recommendations = response.body()?.recommendations
+                    val destinationList = mutableListOf<Preditction>()
+                    recommendations?.forEach { recommendation ->
+                        val infor = Preditction(recommendation.place_name,recommendation.city,recommendation.description)
+                        destinationList.add(infor)
+                        Log.d("Recommendation", "${recommendation.place_name}: ${recommendation.description}")
 
-                    if (recommendedDestinations != null && recommendedDestinations.isNotEmpty()) {
-                        // Create a list to store destination information
-                        val destinationList = mutableListOf<Preditction>()
-
-                        // Process the list of recommended destinations
-                        for (destination in recommendedDestinations) {
-
-                            val infor = Preditction(destination.District,destination.placeName,destination.Theme,destination.Rating)
-                            val destinationInfo = "" +
-                                    "" +
-                                    "" +
-                                    "Place Name: ${destination.placeName}, " +
-                                    "Theme: ${destination.Theme}, " +
-                                    "Rating: ${destination.Rating}, " +
-                                    "District: ${destination.District}"
-
-                            // Add the destination information to the list
-                            destinationList.add(infor)
-
-                            Log.d("Kanishk1", destinationInfo)
-                            // Add your logic to handle each recommended destination
-                        }
-                        dismissprogressbar()
-
-                        binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList)
-                        // Now, destinationList contains information about each recommended destination
-                        // You can use this list as needed
-                    } else {
-                        dismissprogressbar()
-                        Log.d("Kanishk1", "No recommended destinations found")
                     }
-                } else {
-                    // Request failed
+
                     dismissprogressbar()
-                    Log.e("Kanishk", "HTTP status code: ${response.code()}")
-                    val errorBody = response.errorBody()?.string()
-                    Log.e("KanishkErr", "Error body: $errorBody")
+                binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList)
+                } else {
+                    Log.e("API Error", "Response code: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
-                // Request failed due to network error or other issues
-                dismissprogressbar()
-                Log.d("Kanishk", t.toString())
+                Log.e("API Failure", t.message.toString())
             }
         })
+    }
+
+
+//        call.enqueue(object : Callback<RecommendationResponse> {
+//            override fun onResponse(
+//                call: Call<RecommendationResponse>,
+//                response: Response<RecommendationResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                    val recommendationResponse = response.body()
+//                    val recommendedDestinations = recommendationResponse?.recommendedDestinations
+//
+//                    if (recommendedDestinations != null && recommendedDestinations.isNotEmpty()) {
+//                        // Create a list to store destination information
+//                        val destinationList = mutableListOf<Preditction>()
+//
+//                        // Process the list of recommended destinations
+//                        for (destination in recommendedDestinations) {
+//
+//                            val infor = Preditction(destination.place_name,destination.city,destination.description)
+//                            val destinationInfo = "" +
+//                                    "" +
+//                                    "" +
+//                                    "Place Name: ${destination.place_name}, " +
+//                                    "Theme: ${destination.city}, " +
+//                                    "Rating: ${destination.description}, "
+//
+//                            // Add the destination information to the list
+//                            destinationList.add(infor)
+//
+//                            Log.d("Kanishk1", destinationInfo)
+//                            // Add your logic to handle each recommended destination
+//                        }
+//                        dismissprogressbar()
+//
+//                        binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList)
+//                        // Now, destinationList contains information about each recommended destination
+//                        // You can use this list as needed
+//                    } else {
+//                        dismissprogressbar()
+//                        Log.d("Kanishk1", "No recommended destinations found")
+//                    }
+//                } else {
+//                    // Request failed
+//                    dismissprogressbar()
+//                    Log.e("Kanishk", "HTTP status code: ${response.code()}")
+//                    val errorBody = response.errorBody()?.string()
+//                    Log.e("KanishkErr", "Error body: $errorBody")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
+//                // Request failed due to network error or other issues
+//                dismissprogressbar()
+//                Log.d("Kanishk", t.toString())
+//            }
+//        })
 
 //        call.enqueue(object : Callback<RecommendationResponse> {
 //            override fun onResponse(call: Call<RecommendationResponse>, response: Response<RecommendationResponse>) {
@@ -364,7 +403,7 @@ class TripPredictFragment : Fragment() {
 //                Log.d("Kanishk",t.toString())
 //            }
 //        })
-    }
+
 
 
 
