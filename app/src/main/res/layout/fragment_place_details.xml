@@ -35,7 +35,7 @@
         />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -48,7 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/recycler_view_1" />
 
     <TextView
-        android:id="@+id/textView27"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -57,13 +56,14 @@
         android:minHeight="100dp"
         android:paddingStart="10dp"
         android:paddingTop="10dp"
-        android:text="Description"
         android:layout_margin="20dp"
         android:textSize="16dp"
         android:textStyle="bold"
+        android:id="@+id/description"
+        android:text="Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintTop_toBottomOf="@+id/placeName" />
 
     <LinearLayout
         android:id="@+id/linearLayout10"
@@ -75,7 +75,7 @@
         android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27">
+        app:layout_constraintTop_toBottomOf="@+id/description">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -105,6 +105,7 @@
                 android:fontFamily="@font/poppins"
                 android:text="Lahaul Spiti"
                 android:textSize="16dp"
+                android:id="@+id/city"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -136,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="25°C"
+                android:id="@+id/weather"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -170,6 +172,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="1 Day"
+                android:id="@+id/trip_duration"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -250,6 +253,7 @@
 
 
     <TextView
+        android:id="@+id/travel_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

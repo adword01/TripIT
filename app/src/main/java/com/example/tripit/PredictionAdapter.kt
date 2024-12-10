@@ -7,9 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tripit.viewmodels.OnPredictionClickListener
 import com.mappls.sdk.maps.Image
 
-class PredictionAdapter (private val data: List<Preditction>) :
+class PredictionAdapter (private val data: List<RecommendedDestination>,
+                         private val listener: OnPredictionClickListener) :
     RecyclerView.Adapter<PredictionAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +27,9 @@ class PredictionAdapter (private val data: List<Preditction>) :
         holder.predictedDisctrict.text = item.city
 //        holder.ratings.text = item.description
 
+        holder.itemView.setOnClickListener {
+            listener.onPredictionClick(item)
+        }
         getDrawableIdForPlace(item.place_name.toString(),placeItems)?.let {
             holder.ImagePlace.setBackgroundResource(
                 it

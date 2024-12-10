@@ -24,12 +24,15 @@ import com.example.tripit.Preditction
 import com.example.tripit.R
 import com.example.tripit.RecommendationRequest
 import com.example.tripit.RecommendationResponse
+import com.example.tripit.RecommendedDestination
 import com.example.tripit.databinding.AddPlaceInterestViewBinding
 import com.example.tripit.databinding.FragmentTripPredictBinding
+import com.example.tripit.viewmodels.OnPredictionClickListener
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.apache.commons.text.similarity.FuzzyScore
@@ -40,7 +43,7 @@ import retrofit2.Response
 import java.util.Locale
 
 
-class TripPredictFragment : Fragment() {
+class TripPredictFragment : Fragment(){
 
     private lateinit var binding : FragmentTripPredictBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -332,24 +335,26 @@ class TripPredictFragment : Fragment() {
                 response: Response<RecommendationResponse>
             ) {
                 if (response.isSuccessful) {
-                    val recommendations = response.body()?.recommendations
-                    val destinationList = mutableListOf<Preditction>()
-                    recommendations?.forEach { recommendation ->
-                        val infor = Preditction(recommendation.place_name,recommendation.city,recommendation.description)
-                        destinationList.add(infor)
-                        Log.d("Recommendation", "${recommendation.place_name}: ${recommendation.description}")
-
-                    }
-
                     dismissprogressbar()
+                    val rawRecommendations = response.body()?.recommendations
+                    Log.e("API Successful", "Response code: $rawRecommendations")
+                    val destinationList: List<RecommendedDestination> = rawRecommendations?.toList() ?: emptyList()
 
-                binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList)
+                    binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList, object : OnPredictionClickListener {
+                        override fun onPredictionClick(prediction: RecommendedDestination) {
+                            val fragment = PlaceDetailsFragment()
+                            fragment.setDetails(prediction)
+                            loadFragment(fragment)
+                        }
+                    })
                 } else {
+                    dismissprogressbar()
                     Log.e("API Error", "Response code: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
+                dismissprogressbar()
                 Log.e("API Failure", t.message.toString())
             }
         })
@@ -516,5 +521,7 @@ class TripPredictFragment : Fragment() {
     private fun dismissprogressbar(){
         progressDialog?.dismiss()
     }
+
+
 
 }

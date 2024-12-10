@@ -3,17 +3,9 @@ package com.example.tripit
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tripit.PostApiPlaces.apiService
-import com.example.tripit.fragments.RecommendedDestination
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import org.json.JSONObject
 import org.tensorflow.lite.Interpreter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private var tflite: Interpreter? = null
