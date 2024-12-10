@@ -25,6 +25,7 @@ import com.example.tripit.R
 import com.example.tripit.RecommendationRequest
 import com.example.tripit.RecommendationResponse
 import com.example.tripit.RecommendedDestination
+import com.example.tripit.customprogressbar
 import com.example.tripit.databinding.AddPlaceInterestViewBinding
 import com.example.tripit.databinding.FragmentTripPredictBinding
 import com.example.tripit.viewmodels.OnPredictionClickListener
@@ -47,7 +48,8 @@ class TripPredictFragment : Fragment(){
 
     private lateinit var binding : FragmentTripPredictBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var progressDialog: ProgressDialog? = null
+
+    private lateinit var customDialog : customprogressbar
     val NamesOfPlaces = listOf(
         "andretta",
         "awahdevi",
@@ -512,14 +514,15 @@ class TripPredictFragment : Fragment(){
 
 
     private fun showprogressbar(){
-        progressDialog = ProgressDialog(requireContext())
-        progressDialog?.setMessage("Loading...")
-        progressDialog?.setCancelable(false)
-        progressDialog?.show()
+        customDialog = customprogressbar(requireActivity());
+        customDialog.create()
+        customDialog.setDialogText("Loading Trips....")
+        customDialog.setCancelable(false)
+        customDialog.show()
 
     }
     private fun dismissprogressbar(){
-        progressDialog?.dismiss()
+        customDialog.dismiss()
     }
 
 

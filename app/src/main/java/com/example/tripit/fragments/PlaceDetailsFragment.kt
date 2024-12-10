@@ -21,8 +21,12 @@ import com.example.tripit.SlowScrollingLinearLayoutManager
 import com.example.tripit.SlowScrollingPagerSnapHelper
 import com.example.tripit.adapters.CardAdapter
 import com.example.tripit.adapters.CardViewHolder
+import com.example.tripit.customInfoDialog
 import com.example.tripit.databinding.FragmentPlaceDetailsBinding
+import com.example.tripit.dataclasses.Category
+import com.example.tripit.dataclasses.categoryMap
 import com.example.tripit.viewmodels.Card
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -71,6 +75,9 @@ class PlaceDetailsFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val weatherDetails = fetchWeather(recommendedDestination?.city.toString())
                 println(weatherDetails)
+            }
+            viewPackingList.setOnClickListener{
+                fetchPackingList()
             }
 
 
@@ -127,6 +134,65 @@ class PlaceDetailsFragment : Fragment() {
         })
     }
 
+    fun fetchPackingList() {
+        val db = FirebaseFirestore.getInstance()
+
+        // Reference to the global list document in the packing list collection
+        val docRef = db.collection("PackingList").document("Global_Packing_List")
+
+        // Fetch the document
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val stringBuilder = StringBuilder()
+                    // Fetch all categories (maps) from the global list document
+                    val categories = document.data?.map { entry ->
+                        // Extracting each category map (e.g., category1, category2)
+                        val categoryName = entry.key // This will give the category name (category1, category2, etc.)
+                        val categoryItemsMap = entry.value as? Map<String, Any> ?: return@map null
+
+                        // Extract items in the category
+                        val items = categoryItemsMap.mapNotNull { itemEntry ->
+                            val itemMap = itemEntry.value as? Map<String, Any> ?: return@mapNotNull null
+                            val name = itemMap["name"] as? String ?: ""
+                            val quantity = itemMap["quantity"] as? String ?: ""
+                            val conditions = itemMap["conditions"] as? List<String> ?: emptyList()
+
+                            // Creating a MedicalItem from the extracted data
+                            categoryMap(name, quantity, conditions)
+                        }
+
+                        // Creating a Category object for each category
+                        Category(categoryName, items)
+                    }?.filterNotNull() ?: emptyList()
+
+                    // Processing the fetched categories and items
+                    categories.forEach { category ->
+                        stringBuilder.append("Category: ${category.categoryName}\n")
+                        category.items.forEach { item ->
+                            stringBuilder.append(" - Name: ${item.name}\n")
+                            stringBuilder.append("   Quantity: ${item.quantity}\n")
+                            stringBuilder.append("   Conditions: ${item.conditions.joinToString(", ")}\n\n")
+
+                            println("Name: ${item.name}, Quantity: ${item.quantity}, Conditions: ${item.conditions}")
+                        }
+                    }
+
+                    val customDialog = customInfoDialog(requireContext());
+                    customDialog.create()
+                    customDialog.setDialogText("",stringBuilder.toString())
+                    customDialog.setCancelable(false)
+                    customDialog.show()
+                } else {
+                    println("Document does not exist!")
+                }
+            }
+            .addOnFailureListener { exception ->
+                println("Error fetching data: ${exception.message}")
+            }
+    }
+
+
     suspend fun fetchWeather(city: String): String {
         return withContext(Dispatchers.IO) { // Perform network request on IO dispatcher
             val client = OkHttpClient()
@@ -166,7 +232,7 @@ class PlaceDetailsFragment : Fragment() {
         val windObject = jsonObject.getJSONObject("wind")
         val windSpeed = windObject.getDouble("speed")
 
-        binding.weather.text= "$temperature°C"
+        binding.weather.text= "$temperature°F"
 
         return """
         Weather: $weatherDescription
