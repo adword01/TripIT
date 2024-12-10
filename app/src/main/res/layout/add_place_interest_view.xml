@@ -11,17 +11,22 @@
         android:scrollbars="none">
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/interest_chip_grp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:singleSelection="false"
+            app:selectionRequired="false"
             android:orientation="horizontal">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Adventure"
             android:layout_margin="5dp"
             android:textColor="@color/white"
             android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:textSize="12dp"
             android:fontFamily="@font/poppins"
             android:paddingTop="10dp"
@@ -32,6 +37,7 @@
             />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Art"
@@ -41,6 +47,7 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="12dp"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingStart="20dp"
@@ -50,6 +57,7 @@
             />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Boating"
@@ -58,6 +66,7 @@
             android:textSize="12dp"
             android:fontFamily="@font/poppins"
 
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingStart="20dp"
@@ -67,6 +76,7 @@
             />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Culture"
@@ -77,6 +87,7 @@
 
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:backgroundTint="@color/gray_20"
@@ -84,6 +95,7 @@
             />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Festivals"
@@ -96,11 +108,13 @@
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:backgroundTint="@color/gray_20"
 
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hiking"
@@ -109,6 +123,7 @@
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins"
 
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
@@ -118,6 +133,7 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Historical"
@@ -129,6 +145,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:paddingEnd="20dp"
                 android:backgroundTint="@color/gray_20"
 
@@ -136,6 +153,7 @@
 
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nature"
@@ -144,6 +162,7 @@
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins"
 
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
@@ -153,6 +172,7 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Offbeat"
@@ -162,6 +182,7 @@
                 android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:backgroundTint="@color/gray_20"
@@ -169,6 +190,7 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Photography"
@@ -177,6 +199,7 @@
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins"
                 android:paddingTop="10dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
@@ -185,10 +208,12 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Relaxation"
-                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:layout_margin="5dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"         android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins"
@@ -202,8 +227,10 @@
 
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="River Rafting"
                 android:layout_margin="5dp"                android:textColor="@color/white"
                 android:textStyle="bold"
@@ -218,6 +245,7 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rock Climbing"
@@ -228,16 +256,19 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:paddingEnd="20dp"
                 android:backgroundTint="@color/gray_20"
 
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shopping"
-                android:layout_margin="5dp"                android:textColor="@color/white"
+                android:layout_margin="5dp"
+                style="@style/Widget.MaterialComponents.Chip.Filter"      android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="12dp"
                 android:fontFamily="@font/poppins"
@@ -250,6 +281,8 @@
                 />
 
             <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/chip15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sightseeing"
@@ -266,6 +299,8 @@
                 />
 
             <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/chip16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Spiritual"
@@ -282,6 +317,8 @@
                 />
 
             <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/chip17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sports"
@@ -298,6 +335,8 @@
                 />
 
             <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/chip18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Trekking"
@@ -314,6 +353,8 @@
                 />
 
             <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/chip19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Water Sports"
@@ -330,6 +371,8 @@
                 />
 
             <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/chip20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Wildlife"

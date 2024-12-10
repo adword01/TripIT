@@ -24,9 +24,12 @@ import com.example.tripit.Preditction
 import com.example.tripit.R
 import com.example.tripit.RecommendationRequest
 import com.example.tripit.RecommendationResponse
+import com.example.tripit.databinding.AddPlaceInterestViewBinding
 import com.example.tripit.databinding.FragmentTripPredictBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.apache.commons.text.similarity.FuzzyScore
@@ -203,6 +206,7 @@ class TripPredictFragment : Fragment() {
                     "Wildlife",
                     "Scenic Views"
         )
+        binding.PredictionRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 
 //        val adapter = ArrayAdapter(requireContext(),R.layout.item_text,items)
@@ -220,12 +224,40 @@ class TripPredictFragment : Fragment() {
 //            Preditction("Una", "Dera Sant Pura Danna", "Religious Sites", 4.0),
 //            Preditction("Bilaspur", "Markandeya Temple", "Religious Sites", 4.1)
 //        )
-        binding.PredictionRecyclerview.layoutManager = LinearLayoutManager(context)
      //   binding.PredictionRecyclerview.adapter = PredictionAdapter(recommendedDestinations.toList())
 
-
-
+        val selectedChips = StringBuilder()
+        val chipGroup = binding.addPlaceInterestSelector.interestChipGrp
         binding.apply {
+
+          //  val includedBinding = AddPlaceInterestViewBinding.bind(addPlaceInterestSelector.root)
+            Log.d("ChipGroup", "ChipGroup Initialized: $chipGroup")
+
+
+            chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+                Log.d("ListenerCheck", "Listener triggered")
+                Log.d("ListenerCheck", "Checked IDs: $checkedIds")
+
+                selectedChips.clear()
+
+                checkedIds.forEach { id ->
+                    val chip = group.findViewById<Chip>(id)
+                    if (chip != null) {
+                        selectedChips.append(chip.text).append(", ")
+                    }
+                }
+
+                if (selectedChips.isNotEmpty()) {
+                    selectedTags.text = "Selected Tags: $selectedChips"
+                    selectedChips.setLength(selectedChips.length - 2)
+                }
+                else{
+
+                    selectedTags.text = "Selected Tags: NONE"
+                }
+
+                Log.d("SelectedChips", "Selected Chips: $selectedChips")
+            }
 
         }
 
@@ -243,7 +275,7 @@ class TripPredictFragment : Fragment() {
                 // Continue with your API call or other logic
             } else {
                 showprogressbar()
-                getPrediction()
+                getPrediction(selectedChips)
                 // Show a toast indicating that one or more fields are empty
 
             }
@@ -261,7 +293,7 @@ class TripPredictFragment : Fragment() {
         transaction.addToBackStack(null)
     }
 
-    private fun getPrediction(){
+    private fun getPrediction(input_tags : StringBuilder){
 
 
         val jsonObject = JSONObject().apply {
@@ -289,7 +321,7 @@ class TripPredictFragment : Fragment() {
 //            city = binding.Longitude.text.toString())
 
         val request = RecommendationRequest(
-            user_input = ,
+            user_input = input_tags.toString(),
             city =  binding.inputCity.text.toString(),
             top_n = 5
         )
@@ -310,6 +342,7 @@ class TripPredictFragment : Fragment() {
                     }
 
                     dismissprogressbar()
+
                 binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList)
                 } else {
                     Log.e("API Error", "Response code: ${response.code()}")

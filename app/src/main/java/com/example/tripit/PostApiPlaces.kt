@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 object PostApiPlaces {
 
-    private const val BASE_URL = "https://2369-35-234-30-139.ngrok-free.app/"
+    private const val BASE_URL = "https://9556-35-203-182-25.ngrok-free.app/"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
