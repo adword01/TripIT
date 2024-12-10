@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#2B4764"
     tools:context=".fragments.PostFragment">
 
     <ProgressBar
@@ -29,16 +29,16 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
-            android:foregroundGravity="left"
-            android:src="@drawable/back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/circleImageView2"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:foregroundGravity="left"-->
+<!--            android:src="@drawable/back"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
 
         <TextView
@@ -59,23 +59,26 @@
             android:id="@+id/add_new"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:foregroundGravity="left"
             android:src="@drawable/post"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/search_post"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="30dp"
-            android:foregroundGravity="left"
-            android:src="@drawable/search"
-            app:layout_constraintEnd_toStartOf="@+id/add_new"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/search_post"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:foregroundGravity="left"-->
+<!--            android:src="@drawable/search"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/add_new"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textView9"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
 
 
@@ -83,7 +86,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="#D8D8D8"
+        android:background="@color/home_bg"
         android:layout_width="match_parent"
         android:id="@+id/post_rv"
         android:layout_height="match_parent"

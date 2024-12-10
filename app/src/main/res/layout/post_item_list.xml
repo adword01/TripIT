@@ -9,7 +9,7 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:layout_marginTop="2.5dp"
-    android:background="@color/white"
+    app:cardBackgroundColor="#ffffff"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,8 +34,13 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:padding="5dp"
-        android:layout_margin="20dp"
-        android:scaleType="center"
+        android:src="@drawable/raghunath_temple"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
         tools:layout_editor_absoluteX="24dp" />
 
@@ -121,11 +126,9 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:fontFamily="monospace"
                 android:maxLines="8"
-                android:text="It IS a long established fact that a reader Will be
-distracted by the readable content of 0 page when
-looking at its layout,"
+                android:hint="Description"
+                android:maxHeight="100dp"
                 android:textSize="15sp"
                 android:textStyle="normal" />
 
