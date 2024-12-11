@@ -21,6 +21,7 @@ import com.example.tripit.adapters.ImageAdapter
 import com.example.tripit.R
 import com.example.tripit.adapters.CategoryAdapter
 import com.example.tripit.databinding.FragmentHomeBinding
+import com.example.tripit.viewmodels.onCategoryClicked
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -143,7 +144,12 @@ class HomeFragment : Fragment() {
             // Ensure you have names corresponding to the images
         )
 
-        val categoryAdapter = CategoryAdapter(catList, catName)
+        val categoryAdapter = CategoryAdapter(catList, catName,object : onCategoryClicked{
+            override fun onCategoryClicked(category: String) {
+
+            }
+
+        })
         binding.categoryRv.adapter = categoryAdapter
 
         // Set up GridLayoutManager with 2 columns

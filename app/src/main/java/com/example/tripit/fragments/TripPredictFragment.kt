@@ -327,7 +327,7 @@ class TripPredictFragment : Fragment(){
 
         val request = RecommendationRequest(
             user_input = input_tags.toString(),
-            city =  binding.inputCity.text.toString(),
+            city =  binding.inputCity.text.toString().trim(),
             top_n = 5
         )
 

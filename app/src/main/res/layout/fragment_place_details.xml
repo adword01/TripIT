@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="25°C"
+                android:text="25.44 °C"
                 android:id="@+id/weather"
                 android:textSize="16dp"
                 android:textStyle="bold" />
