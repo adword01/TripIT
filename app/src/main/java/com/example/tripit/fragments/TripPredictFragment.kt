@@ -1,47 +1,35 @@
 package com.example.tripit.fragments
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.ProgressDialog
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tripit.PlaceItem
 import com.example.tripit.PostApiPlaces
 import com.example.tripit.PredictionAdapter
-import com.example.tripit.Preditction
 import com.example.tripit.R
 import com.example.tripit.RecommendationRequest
 import com.example.tripit.RecommendationResponse
 import com.example.tripit.RecommendedDestination
 import com.example.tripit.customprogressbar
-import com.example.tripit.databinding.AddPlaceInterestViewBinding
 import com.example.tripit.databinding.FragmentTripPredictBinding
 import com.example.tripit.viewmodels.OnPredictionClickListener
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
-import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
-import org.apache.commons.text.similarity.FuzzyScore
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Locale
+import java.util.Arrays
 
 
 class TripPredictFragment : Fragment(){
@@ -309,7 +297,9 @@ class TripPredictFragment : Fragment(){
             put("longitude",76.27356938)
 
         }
-
+        val input = input_tags.toString()
+        val list = Arrays.asList(*input.split(",\\s*".toRegex()).dropLastWhile { it.isEmpty() }
+            .toTypedArray())
 
 
         val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), jsonObject.toString())
@@ -326,21 +316,17 @@ class TripPredictFragment : Fragment(){
 //            city = binding.Longitude.text.toString())
 
         val request = RecommendationRequest(
-            user_input = input_tags.toString(),
-            city =  binding.inputCity.text.toString().trim(),
-            top_n = 5
+            tags = list
         )
 
-        PostApiPlaces.apiService.getRecommendations(request).enqueue(object : Callback<RecommendationResponse> {
+        PostApiPlaces.apiService.getRecommendations(request).enqueue(object : Callback<List<RecommendedDestination>> {
             override fun onResponse(
-                call: Call<RecommendationResponse>,
-                response: Response<RecommendationResponse>
+                call: Call<List<RecommendedDestination>>,
+                response: Response<List<RecommendedDestination>>
             ) {
                 if (response.isSuccessful) {
                     dismissprogressbar()
-                    val rawRecommendations = response.body()?.recommendations
-                    Log.e("API Successful", "Response code: $rawRecommendations")
-                    val destinationList: List<RecommendedDestination> = rawRecommendations?.toList() ?: emptyList()
+                    val destinationList: List<RecommendedDestination> = response.body() ?: emptyList()
 
                     binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList, object : OnPredictionClickListener {
                         override fun onPredictionClick(prediction: RecommendedDestination) {
@@ -351,15 +337,46 @@ class TripPredictFragment : Fragment(){
                     })
                 } else {
                     dismissprogressbar()
-                    Log.e("API Error", "Response code: ${response.code()}")
+                    Log.e("API Error", "Response code: ${response.code()} ${request.toString()}")
                 }
             }
 
-            override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<RecommendedDestination>>, t: Throwable) {
                 dismissprogressbar()
                 Log.e("API Failure", t.message.toString())
             }
         })
+
+
+//        PostApiPlaces.apiService.getRecommendations(request).enqueue(object : Callback<RecommendationResponse> {
+//            override fun onResponse(
+//                call: Call<RecommendationResponse>,
+//                response: Response<RecommendationResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                    dismissprogressbar()
+//                    val rawRecommendations = response.body()?.recommendations
+//                    Log.e("API Successful", "Response code: $rawRecommendations")
+//                    val destinationList: List<RecommendedDestination> = rawRecommendations?.toList() ?: emptyList()
+//
+//                    binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList, object : OnPredictionClickListener {
+//                        override fun onPredictionClick(prediction: RecommendedDestination) {
+//                            val fragment = PlaceDetailsFragment()
+//                            fragment.setDetails(prediction)
+//                            loadFragment(fragment)
+//                        }
+//                    })
+//                } else {
+//                    dismissprogressbar()
+//                    Log.e("API Error", "Response code: ${response.code()} ${response.body()} ${request.toString()}")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<RecommendationResponse>, t: Throwable) {
+//                dismissprogressbar()
+//                Log.e("API Failure", t.message.toString())
+//            }
+//        })
     }
 
 

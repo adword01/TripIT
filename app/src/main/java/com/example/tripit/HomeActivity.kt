@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_profile -> {
-                    loadFragment(PlaceDetailsFragment())
+                    loadFragment(SettingsFragment())
 //                    loadFragment(SettingsFragment())
 
 //                    binding.textMain.text="Profile"

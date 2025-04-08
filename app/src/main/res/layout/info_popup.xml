@@ -21,26 +21,35 @@
 
         <TextView
             android:id="@+id/DialogHeadingText"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:text="jdfjf"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="Packing List"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/DialogText"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="wkdnfwnf"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </ScrollView>
 
 
-        <TextView
-            android:id="@+id/DialogText"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:text="wkdnfwnf"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
 
 
         <LinearLayout

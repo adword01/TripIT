@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 object PostApiPlaces {
 
-    private const val BASE_URL = "https://0814-34-82-234-41.ngrok-free.app/"
+    private const val BASE_URL = "https://3ecd-34-148-155-154.ngrok-free.app/"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -25,8 +25,9 @@ object PostApiPlaces {
     }
 
     interface ApiService {
-        @POST("recommend/")
-        fun getRecommendations(@Body request: RecommendationRequest): Call<RecommendationResponse>
-       // fun getRecommendations(@Body request: RecommendationRequest): Call<RecommendationResponse>
+        @POST("get-recommendations/")
+        fun getRecommendations(@Body request: RecommendationRequest): Call<List<RecommendedDestination>>
+
+        // fun getRecommendations(@Body request: RecommendationRequest): Call<RecommendationResponse>
     }
 }

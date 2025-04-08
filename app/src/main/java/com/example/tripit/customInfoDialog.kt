@@ -20,7 +20,6 @@ class customInfoDialog(context: Context) : Dialog(context) {
         setContentView(R.layout.info_popup)
 
         dialogHeading = findViewById(R.id.DialogHeadingText)
-        dialogHeading.visibility=View.GONE
         DialogText = findViewById(R.id.DialogText)
         okayBtn = findViewById(R.id.okayBtn)
 

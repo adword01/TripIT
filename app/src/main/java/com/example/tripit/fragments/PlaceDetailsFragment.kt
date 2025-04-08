@@ -1,8 +1,12 @@
 package com.example.tripit.fragments
 
 import android.graphics.Rect
+import android.graphics.Typeface
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +26,7 @@ import com.example.tripit.SlowScrollingPagerSnapHelper
 import com.example.tripit.adapters.CardAdapter
 import com.example.tripit.adapters.CardViewHolder
 import com.example.tripit.customInfoDialog
+import com.example.tripit.customprogressbar
 import com.example.tripit.databinding.FragmentPlaceDetailsBinding
 import com.example.tripit.dataclasses.Category
 import com.example.tripit.dataclasses.categoryMap
@@ -47,9 +52,24 @@ class PlaceDetailsFragment : Fragment() {
     private var recommendedDestination: RecommendedDestination? = null
     private lateinit var binding : FragmentPlaceDetailsBinding
 
+    private lateinit var customDialog : customprogressbar
+
     fun setDetails(detail: RecommendedDestination) {
         this.recommendedDestination = detail
     }
+
+    private fun showprogressbar(){
+        customDialog = customprogressbar(requireActivity());
+        customDialog.create()
+        customDialog.setDialogText("Loading Info....")
+        customDialog.setCancelable(false)
+        customDialog.show()
+
+    }
+    private fun dismissprogressbar(){
+        customDialog.dismiss()
+    }
+
     private lateinit var recyclerView1: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +82,11 @@ class PlaceDetailsFragment : Fragment() {
     ): View {
         binding = FragmentPlaceDetailsBinding.inflate(layoutInflater,container,false)
 
+        showprogressbar()
         binding.apply {
 
 
-            placeName.text=recommendedDestination?.place_name
+            placeName.text=recommendedDestination?.Place_name
             description.text=recommendedDestination?.description
             tripDuration.text=recommendedDestination?.duration
             city.text=recommendedDestination?.city
@@ -77,6 +98,7 @@ class PlaceDetailsFragment : Fragment() {
                 println(weatherDetails)
             }
             viewPackingList.setOnClickListener{
+                showprogressbar()
                 fetchPackingList()
             }
 
@@ -145,6 +167,7 @@ class PlaceDetailsFragment : Fragment() {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     val stringBuilder = StringBuilder()
+                    val spannableStringBuilder = SpannableStringBuilder()
                     // Fetch all categories (maps) from the global list document
                     val categories = document.data?.map { entry ->
                         // Extracting each category map (e.g., category1, category2)
@@ -167,27 +190,39 @@ class PlaceDetailsFragment : Fragment() {
                     }?.filterNotNull() ?: emptyList()
 
                     // Processing the fetched categories and items
+
                     categories.forEach { category ->
-                        stringBuilder.append("Category: ${category.categoryName}\n")
+                        val categoryTitle = "Category: ${category.categoryName}\n"
+                        val categoryStart = spannableStringBuilder.length
+                        spannableStringBuilder.append(categoryTitle)
+                        spannableStringBuilder.setSpan(
+                            StyleSpan(Typeface.BOLD),
+                            categoryStart,
+                            spannableStringBuilder.length,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+
                         category.items.forEach { item ->
-                            stringBuilder.append(" - Name: ${item.name}\n")
-                            stringBuilder.append("   Quantity: ${item.quantity}\n")
-                            stringBuilder.append("   Conditions: ${item.conditions.joinToString(", ")}\n\n")
+                            spannableStringBuilder.append(" - Name: ${item.name}\n")
+                            spannableStringBuilder.append("   Quantity: ${item.quantity}\n")
+                            spannableStringBuilder.append("   Conditions: ${item.conditions.joinToString(", ")}\n\n")
 
                             println("Name: ${item.name}, Quantity: ${item.quantity}, Conditions: ${item.conditions}")
                         }
                     }
-
+                    dismissprogressbar()
                     val customDialog = customInfoDialog(requireContext());
                     customDialog.create()
-                    customDialog.setDialogText("",stringBuilder.toString())
+                    customDialog.setDialogText("Packing List",spannableStringBuilder.toString())
                     customDialog.setCancelable(false)
                     customDialog.show()
                 } else {
+                    dismissprogressbar()
                     println("Document does not exist!")
                 }
             }
             .addOnFailureListener { exception ->
+                dismissprogressbar()
                 println("Error fetching data: ${exception.message}")
             }
     }
@@ -208,18 +243,24 @@ class PlaceDetailsFragment : Fragment() {
                 if (response.isSuccessful) {
                     val responseBody = response.body?.string()
                     responseBody?.let {
+                        dismissprogressbar()
                         return@withContext parseWeatherResponse(it)
                     }
                 } else {
+                    dismissprogressbar()
                     return@withContext "Failed to fetch weather: ${response.code}"
                 }
             } catch (e: Exception) {
+                dismissprogressbar()
                 return@withContext "Error: ${e.message}"
             }
             return@withContext "Unexpected error occurred"
         }
     }
 
+    fun convertFahrenheitToCelsius(fahrenheit: Double): Double {
+        return (fahrenheit - 32) * 5 / 9
+    }
 
     fun parseWeatherResponse(response: String): String {
         val jsonObject = JSONObject(response)
@@ -232,7 +273,8 @@ class PlaceDetailsFragment : Fragment() {
         val windObject = jsonObject.getJSONObject("wind")
         val windSpeed = windObject.getDouble("speed")
 
-        binding.weather.text= "$temperature°F"
+        binding.weather.text = "${"%.2f".format(convertFahrenheitToCelsius(temperature))} °C"
+
 
         return """
         Weather: $weatherDescription
