@@ -6,6 +6,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -86,21 +87,32 @@ class CreatePostFragment : Fragment() {
     }
 
     private fun pickImageFromGallery() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                REQUEST_IMAGE_PICK
-            )
-        } else {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Use the Android 13+ Photo Picker
+            val intent = Intent(MediaStore.ACTION_PICK_IMAGES)
+            intent.type = "image/*"
+            intent.putExtra(MediaStore.EXTRA_PICK_IMAGES_MAX, 1)
             startActivityForResult(intent, REQUEST_IMAGE_PICK)
+        } else {
+            // For Android 12 and below
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    REQUEST_IMAGE_PICK
+                )
+            } else {
+                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                intent.type = "image/*"
+                startActivityForResult(intent, REQUEST_IMAGE_PICK)
+            }
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -122,10 +134,10 @@ class CreatePostFragment : Fragment() {
             imageUrl = imageUri
 
             Picasso.get().load(imageUri).into(binding.imageView11)
-
             binding.locationLyt.visibility = View.VISIBLE
         }
     }
+
 
     private fun getUserInfo() {
         val usernameRef = databaseReference.child(useruid).child("username")
@@ -142,9 +154,6 @@ class CreatePostFragment : Fragment() {
         })
     }
 
-//    private fun saveImageToFirebaseStorage(imageUri: Uri,Post_Number : Int) {
-//
-//    }
 
 
     private fun checkProfileImageUrlInDatabase() {
@@ -164,77 +173,6 @@ class CreatePostFragment : Fragment() {
                 }
             })
     }
-
-//    private fun savePostToDatabase(imageUri: Uri,post_number : Int) {
-//        val databaseReference = FirebaseDatabase.getInstance().reference.child("posts")
-//        // Create a SimpleDateFormat instance with the desired format
-//
-//
-//        // Create a SimpleDateFormat instance with the desired format
-//        val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
-//
-//        // Get the current date
-//
-//        // Get the current date
-//        val currentDate = Date()
-//
-//        // Format the current date using the SimpleDateFormat
-//
-//        // Format the current date using the SimpleDateFormat
-//        val formattedDate = sdf.format(currentDate)
-//
-//        val storageRef = FirebaseStorage.getInstance().reference
-//        val imageRef = storageRef.child("$useruid/post_pictures/$post_number.jpg")
-//
-//        imageRef.putFile(imageUri)
-//            .addOnSuccessListener { taskSnapshot ->
-//                // Image uploaded successfully
-//                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
-//                    val imageUrl = downloadUri.toString()
-//
-//                  //  databaseReference.child(useruid).child("profileImageUrl").setValue(imageUrl)
-//
-//                    val postMap = HashMap<String, Any>()
-//
-//                    postMap["username"] = binding.userName.text.toString()
-//                    postMap["ProfileImage"] = ProfileImage
-//                    postMap["post_number"] = post_number
-//                    postMap["content"] = binding.caption.text.toString()
-//                    postMap["location"] = binding.locationTxt.text.toString()
-//                    postMap["imageUrl"] = imageUrl
-//                    postMap["Post_Date"] = formattedDate// Use the profile image URL
-//
-//                    databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
-//                        .addOnCompleteListener { task ->
-//                            if (task.isSuccessful) {
-//                                Log.d("postNumber1",post_number.toString());
-//                                AddPostNumber(post_number)
-//                                dismissprogressbar()
-//                                Toast.makeText(requireContext(), "Post saved successfully", Toast.LENGTH_SHORT).show()
-//                            } else {
-//                                dismissprogressbar()
-//                                Toast.makeText(requireContext(), "Error saving post", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//
-//                    if (isAdded) { // Check if the fragment is still attached
-//                        // Display a success message if needed
-//                        dismissprogressbar()
-//                        Toast.makeText(requireContext(), "Image uploaded successfully", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//            .addOnFailureListener { e ->
-//                if (isAdded) { // Check if the fragment is still attached
-//                    // Handle image upload failure
-//                    Toast.makeText(requireContext(), "Image upload failed: $e", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//
-//
-//    }
-
 
     private fun savePostToDatabase(imageUri: Uri, post_number: Int) {
         // ...
@@ -271,6 +209,7 @@ class CreatePostFragment : Fragment() {
                 postMap["location"] = binding.locationTxt.text.toString()
                 postMap["imageUrl"] = imageUrl
                 postMap["Post_Date"] = formattedDate
+                postMap["uid"] = FirebaseAuth.getInstance().uid.toString()
 
                 databaseReference.child(useruid).child(post_number.toString()).setValue(postMap)
                     .addOnCompleteListener { task ->
@@ -344,58 +283,6 @@ class CreatePostFragment : Fragment() {
 
         }
 
-
-
-//        postReference.addListenerForSingleValueEvent(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if (snapshot.exists()){
-//
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-
-
-
-
-//        val postNumberReference = databaseReference.child("posts").child(useruid).child(post_number.toString()).child("post_number")
-//
-//        postNumberReference.addListenerForSingleValueEvent(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    currentPostNumber = (dataSnapshot.value as Long).toInt()
-////                    Log.d("PostNumber", "Current Post Number: $currentPostNumber")
-////
-////                    post_number++
-////                    Log.d("PostNumber", "Updated Post Number: $post_number")
-////
-////                    savePostToDatabase()
-//                } else {
-//                    currentPostNumber=0
-////                    Log.d("PostNumber", "Post Number doesn't exist. Setting to 1")
-////                    savePostToDatabase()
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Handle any errors that occurred during the database operation
-//                Log.e("PostNumber", "Error retrieving post number: ${databaseError.message}")
-//            }
-//        })
-//        if (currentPostNumber == 0){
-//            currentPostNumber++
-//            savePostToDatabase(currentPostNumber)
-//        }
-//        else{
-//            currentPostNumber++
-//            Log.d("PostNumber", "Updated Post Number: $currentPostNumber")
-//
-//            savePostToDatabase(currentPostNumber)
-//        }
     }
 
 

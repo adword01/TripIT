@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -154,7 +155,7 @@ class TripPredictFragment : Fragment(){
         "triund_trek",
         "una_fort"
     )
-
+    private var selectedCount = 5  // default value
 
 
     override fun onCreateView(
@@ -255,6 +256,22 @@ class TripPredictFragment : Fragment(){
         }
 
 
+        binding.apply {
+            chip5.setOnClickListener {
+                selectChip(chip5, chip10, 5)
+                Log.d("ClickTest", "chip10 clicked")
+
+            }
+
+            chip10.setOnClickListener {
+                selectChip(chip10, chip5, 10)
+                Log.d("ClickTest", "chip11 clicked")
+
+                Toast.makeText(requireContext(), "You have to be a premium user", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
 
         binding.Search.setOnClickListener {
 
@@ -268,7 +285,7 @@ class TripPredictFragment : Fragment(){
                 // Continue with your API call or other logic
             } else {
                 showprogressbar()
-                getPrediction(selectedChips)
+                getPrediction(selectedChips,binding.inputCity.text?.trim().toString(),5)
                 // Show a toast indicating that one or more fields are empty
 
             }
@@ -279,6 +296,12 @@ class TripPredictFragment : Fragment(){
         return binding.root
     }
 
+    fun selectChip(selectedView: TextView, unselectedView: TextView, value: Int) {
+        selectedView.setBackgroundResource(R.drawable.output_selector_bg)
+        unselectedView.setBackgroundResource(R.drawable.output_selector_unselected_bg)
+        selectedCount = value
+    }
+
     private fun loadFragment(fragment: Fragment) {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container,fragment)
@@ -286,7 +309,7 @@ class TripPredictFragment : Fragment(){
         transaction.addToBackStack(null)
     }
 
-    private fun getPrediction(input_tags : StringBuilder){
+    private fun getPrediction(input_tags : StringBuilder,district:String,count:Int){
 
 
         val jsonObject = JSONObject().apply {
@@ -315,9 +338,7 @@ class TripPredictFragment : Fragment(){
 //            top_n =  binding.DaysEditText.text.toString().toInt(),
 //            city = binding.Longitude.text.toString())
 
-        val request = RecommendationRequest(
-            tags = list
-        )
+        val request = RecommendationRequest(list, district, count)
 
         PostApiPlaces.apiService.getRecommendations(request).enqueue(object : Callback<List<RecommendedDestination>> {
             override fun onResponse(
@@ -326,7 +347,7 @@ class TripPredictFragment : Fragment(){
             ) {
                 if (response.isSuccessful) {
                     dismissprogressbar()
-                    val destinationList: List<RecommendedDestination> = response.body() ?: emptyList()
+                    val destinationList: List<RecommendedDestination> = response.body() ?: emptyList<RecommendedDestination>().take(5)
 
                     binding.PredictionRecyclerview.adapter = PredictionAdapter(destinationList, object : OnPredictionClickListener {
                         override fun onPredictionClick(prediction: RecommendedDestination) {

@@ -10,6 +10,10 @@ data class Post(
     var username: String,
     var like: Int,
     var comment: String,
-    var save:Boolean
+    var save:Boolean,
+    val likes: Map<String, Boolean>? = null,
+    val uid:String
 ){
-constructor():this("","","",0,"","","",0,"",false)}
+    fun likeCount(): Int = likes?.size ?: 0
+    fun isLikedBy(userId: String): Boolean = likes?.containsKey(userId) == true
+constructor():this("","","",0,"","","",0,"",false,null,"")}

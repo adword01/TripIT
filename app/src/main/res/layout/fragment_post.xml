@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#2B4764"
+    android:background="@color/home_bg"
     tools:context=".fragments.PostFragment">
 
     <ProgressBar
@@ -45,17 +45,17 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/gilroyextrabold"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Activities"
             android:textSize="24sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/add_new"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -64,6 +64,7 @@
             android:layout_marginTop="10dp"
             android:foregroundGravity="left"
             android:src="@drawable/post"
+            app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

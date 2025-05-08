@@ -2,7 +2,6 @@ package com.example.tripit.fragments
 
 import android.graphics.Rect
 import android.graphics.Typeface
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tripit.R
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.tripit.HorizontalSpaceItemDecoration
 import com.example.tripit.RecommendedDestination
@@ -88,11 +86,12 @@ class PlaceDetailsFragment : Fragment() {
 
             placeName.text=recommendedDestination?.Place_name
             description.text=recommendedDestination?.description
-            tripDuration.text=recommendedDestination?.duration
-            city.text=recommendedDestination?.city
-            placeTags.text=recommendedDestination?.processed_tags
-            travelOptions.text=recommendedDestination?.travel_option
-            travelStyle.text=recommendedDestination?.travel_style
+            tripDuration.text=recommendedDestination?.Duration
+            city.text=recommendedDestination?.District
+            placeTags.text=recommendedDestination?.Tags
+            travelOptions.text=recommendedDestination?.Travel_option
+            travelStyle.text=recommendedDestination?.Travel_style
+            Log.d("TripPredicted",recommendedDestination.toString())
             CoroutineScope(Dispatchers.Main).launch {
                 val weatherDetails = fetchWeather(recommendedDestination?.city.toString())
                 println(weatherDetails)
