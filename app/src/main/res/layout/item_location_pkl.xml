@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvWhereAreYouGoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Where are you going?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Search Box -->
+    <EditText
+        android:id="@+id/etLocationSearch"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Search location"
+        android:drawableStart="@drawable/search_icon"
+        android:background="@drawable/black_full_gradiant"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"/>
+
+    <!-- Search Results -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLocationResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"/>
+</LinearLayout>

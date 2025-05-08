@@ -51,6 +51,21 @@ class ExpenditureFragment : Fragment() {
             saveQuizToRealtimeDatabase(numberOfEntries)
             binding.PeopleScoll.visibility = View.GONE
         }
+        binding.showPackingListTxt.visibility = View.GONE
+        binding.showPackingListTxt.setOnClickListener {
+            val PackingListFragment = PackingListFragment()
+
+            // Get the FragmentManager and start a FragmentTransaction
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+            // Replace the current fragment with the "Create Post" fragment
+            transaction.replace(R.id.container, PackingListFragment)
+            transaction.addToBackStack(null)
+
+            // Commit the transaction
+            transaction.commit()
+        }
 
         return binding.root
     }

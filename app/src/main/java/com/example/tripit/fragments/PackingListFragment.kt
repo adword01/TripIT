@@ -6,9 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.tripit.R
+import com.example.tripit.databinding.FragmentPackingListBinding
 
 class PackingListFragment : Fragment() {
+
+    private lateinit var binding: FragmentPackingListBinding
 
     companion object {
         fun newInstance() = PackingListFragment()
@@ -25,6 +30,24 @@ class PackingListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_packing_list, container, false)
+        binding = FragmentPackingListBinding.inflate(inflater, container, false)
+
+        binding.addPackingListFab.setOnClickListener {
+
+            val PackingListFragment = AddPackingListFragment()
+
+            // Get the FragmentManager and start a FragmentTransaction
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+            // Replace the current fragment with the "Create Post" fragment
+            transaction.replace(R.id.container, PackingListFragment)
+            transaction.addToBackStack(null)
+
+            // Commit the transaction
+            transaction.commit()
+        }
+
+        return binding.root
     }
 }

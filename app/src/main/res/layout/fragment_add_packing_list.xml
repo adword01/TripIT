@@ -3,12 +3,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.AddPackingListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:elevation="10dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/top_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="20dp"
+                app:lottie_rawRes="@raw/back_btn_anim"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/top_bar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:text="Packing List"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="75dp"
+        android:padding="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/add_packing_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" />
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+<!--        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator-->
+<!--            android:id="@+id/dotsIndicator"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:dotsColor="@color/black"-->
+<!--            app:selectedDotColor="@color/purple_500"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnNext"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Next"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:backgroundTint="@color/blue_custom"-->
+<!--            android:textColor="@android:color/white"/>-->
+<!--    </LinearLayout>-->
+
+    </LinearLayout>
+
 
 </FrameLayout>

@@ -111,6 +111,7 @@
             android:layout_marginBottom="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:visibility=""
 
             android:textSize="17sp"
 
